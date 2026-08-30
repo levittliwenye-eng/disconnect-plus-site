@@ -63,8 +63,8 @@ export const defaultContent: CmsContent = {
         zh: "DISCONNECT+ 转为声音生态档案"
       },
       summary: {
-        en: "The site now connects the band, free open-source DISCONNECT audio plugins, Noise Box in Kunming, and Field Electric Noise outdoor activity.",
-        zh: "网站开始同时记录乐队、免费开源的 DISCONNECT 音频插件、昆明 Noise Box，以及野外电燥活动。"
+        en: "The site now connects the band, free open-source DISCONNECT audio plugins, Noise Box in Kunming, and Wilderness Noise outdoor activity.",
+        zh: "网站开始同时记录乐队、免费开源的 DISCONNECT 音频插件、昆明 Noise Box，以及荒野噪音活动。"
       },
       pinned: true
     },
@@ -99,14 +99,14 @@ export const defaultContent: CmsContent = {
     {
       id: "field-electric-noise",
       date: "2026-09-20",
-      category: { en: "Field Noise", zh: "野外电燥" },
+      category: { en: "Wilderness Noise", zh: "荒野噪音" },
       title: {
-        en: "Field Electric Noise prepares the next outdoor transmission",
-        zh: "野外电燥准备下一次户外传输"
+        en: "Wilderness Noise prepares the next outdoor transmission",
+        zh: "荒野噪音准备下一次户外传输"
       },
       summary: {
-        en: "The outdoor electric-noise activity happens irregularly and requires advance signup.",
-        zh: "野外电燥不定期举行，需要提前报名。"
+        en: "The outdoor noise activity happens irregularly and requires advance signup.",
+        zh: "荒野噪音不定期举行，需要提前报名。"
       },
       pinned: false
     }
@@ -205,7 +205,7 @@ export const defaultContent: CmsContent = {
     },
     {
       id: "field-electric-noise",
-      title: { en: "Field Electric Noise", zh: "野外电燥" },
+      title: { en: "Wilderness Noise", zh: "荒野噪音" },
       type: { en: "Outdoor activity", zh: "户外活动" },
       imageUrl: "/images/crow_beach.JPG",
       description: {
@@ -259,8 +259,8 @@ export const defaultContent: CmsContent = {
       id: "field-noise-outdoor",
       date: "2026-09-20",
       city: { en: "Outdoor / advance signup", zh: "户外 / 提前报名" },
-      venue: { en: "Field Electric Noise site / irregular", zh: "野外电燥现场 / 不定期" },
-      title: { en: "Field Electric Noise", zh: "野外电燥" },
+      venue: { en: "Wilderness Noise site / irregular", zh: "荒野噪音现场 / 不定期" },
+      title: { en: "Wilderness Noise", zh: "荒野噪音" },
       ticketUrl: "#store",
       status: "secret"
     },
@@ -308,7 +308,7 @@ export const defaultContent: CmsContent = {
     },
     {
       id: "field-electric-noise-signup",
-      name: { en: "Field Electric Noise Signup", zh: "野外电燥提前报名" },
+      name: { en: "Wilderness Noise Signup", zh: "荒野噪音提前报名" },
       type: { en: "Irregular outdoor activity", zh: "不定期户外活动" },
       price: "Open",
       availability: { en: "Advance signup required", zh: "需提前报名" },

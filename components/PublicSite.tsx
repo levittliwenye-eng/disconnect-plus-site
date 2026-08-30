@@ -69,15 +69,13 @@ const ui = {
       archive: "档案",
       store: "商店"
     },
-    heroKicker: "声音项目 / 音频插件 / 场地 / 野外电燥",
+    heroKicker: "实验电子乐队 / 独立音频插件 / Noise Box俱乐部 / 荒野噪音",
     heroCopy:
-      "DISCONNECT+ 连接实验电子乐队、免费开源音频插件、昆明 Noise Box，以及不定期发生的野外电燥活动。",
+      "DISCONNECT+ 实验电子乐队、独立音频插件、昆明 Noise Box俱乐部，以及不定期发生的荒野噪音活动。",
     listen: "立即试听",
     latestSignal: "当前信号",
-    nodesLead:
-      "这里不是单一乐队页面，而是一组持续发生的声音节点：制作工具、现场空间、每周即兴和野外电声活动互相接线。",
-    pluginLead:
-      "DISCONNECT audio 的公开插件项目：目前两个插件免费发布并全开源，把现场里反复出现的驱动、干预、随机和序列逻辑做成可以下载、研究和继续改造的声音工具。",
+    nodesLead: "",
+    pluginLead: "",
     nodes: [
       {
         title: "DISCONNECT+ 乐队",
@@ -95,24 +93,24 @@ const ui = {
         body: "云南昆明 871文化创意工厂里的演出场地，每周五或周六 21:00-22:30 组织电子音乐即兴。"
       },
       {
-        title: "野外电燥",
-        meta: "Field electric noise",
+        title: "荒野噪音",
+        meta: "Wilderness noise",
         body: "不定期举行，提前报名，把电声设备带到户外，在环境噪声和电源限制里做开放现场实验。"
       }
     ],
-    musicLead: "试听会混合乐队作品、Noise Box 现场记录和野外电燥采样。后台可以继续添加单曲、歌词、外链和发行信息。",
-    visualLead: "把 MV、海报、插件界面、Noise Box 现场照片、画作和野外残片收进同一个视觉档案。",
-    showsLead: "Noise Box 固定在周五或周六 21:00-22:30 进行电子音乐即兴；野外电燥不定期举行，需要提前报名。",
-    storeLead: "商店/预约已经开放：实体周边、免费开源插件咨询、Noise Box 活动名额和野外电燥报名都可以在这里管理。",
+    musicLead: "",
+    visualLead: "",
+    showsLead: "Noise Box 固定在周五或周六 21:00-22:30 进行电子音乐即兴；荒野噪音不定期举行，需要提前报名。",
+    storeLead: "商店/预约已经开放：实体周边、免费开源插件咨询、Noise Box 活动名额和荒野噪音报名都可以在这里管理。",
     membersLead: "给媒体、演出方和合作项目使用的乐队介绍与成员档案。",
     bandBioEyebrow: "Press bio",
     bandBioTitle: "实验电子 / 噪音氛围 / 现场即兴",
     bandBioParagraphs: [
       "DISCONNECT+ 是一组围绕实验电子、噪音氛围、声音工具和现场空间持续生长的声音项目。它以乐队现场为核心，合成器、吉他、采样、效果器、打击物、声响装置与不同乐手的即兴反应共同进入同一个系统，在不稳定的结构中生成新的路径。",
       "DISCONNECT 同时延伸为音频插件品牌，把现场中反复出现的失真、随机调制、纹理生成和空间处理整理成免费发布、全开源的声音工具。Noise Box 是项目的线下发生地，位于云南昆明 871文化创意工厂，每周五或周六 21:00-22:30 组织电子音乐即兴、小型演出、设备试验和跨乐手合奏。",
-      "野外电燥则把电子设备带离室内，不定期在户外空间举行，并通过提前报名组织参与者。移动电源、环境声、天气和距离会进入声音系统。DISCONNECT+ 接受 Livehouse、艺术空间、影像放映、跨媒介现场、实验音乐活动、插件演示和声音/视觉合作邀请。"
+      "荒野噪音则把电子设备带离室内，不定期在户外空间举行，并通过提前报名组织参与者。移动电源、环境声、天气和距离会进入声音系统。DISCONNECT+ 接受 Livehouse、艺术空间、影像放映、跨媒介现场、实验音乐活动、插件演示和声音/视觉合作邀请。"
     ],
-    bandBioTags: ["noise", "ambient", "plugins", "Noise Box", "field electric noise"],
+    bandBioTags: ["noise", "ambient", "plugins", "Noise Box", "wilderness noise"],
     newsLead: "动态用于发布新歌、演出、合作和周边补货。",
     orderTitle: "预留 / 购买意向",
     privacyNotice: "提交的信息只用于联系和订单处理；联系方式和订单内容不会公开显示。",
@@ -126,7 +124,6 @@ const ui = {
     soldOut: "售罄",
     stock: "库存",
     contactBand: "联系 / 合作",
-    booking: "演出合作",
     admin: "后台",
     privacy: "隐私说明",
     sourceCode: "源代码",
@@ -142,15 +139,13 @@ const ui = {
       archive: "Archive",
       store: "Store"
     },
-    heroKicker: "Sound project / audio plugins / venue / field noise",
+    heroKicker: "Experimental band / independent audio plugins / Noise Box club / wilderness noise",
     heroCopy:
-      "DISCONNECT+ connects an experimental electronic band, free open-source audio plugins, Noise Box in Kunming, and irregular Field Electric Noise gatherings.",
+      "DISCONNECT+ links an experimental electronic band, independent audio plugins, the Kunming Noise Box club, and irregular Wilderness Noise gatherings.",
     listen: "Listen now",
     latestSignal: "Current signal",
-    nodesLead:
-      "This is not a single band page, but a live network of sound nodes: tools, rooms, weekly improvisation, and outdoor electric activity feeding each other.",
-    pluginLead:
-      "Public DISCONNECT audio plugin projects: two free open-source releases turning live drive, intervention, randomness, and sequencing ideas into tools that can be downloaded, studied, and rebuilt.",
+    nodesLead: "",
+    pluginLead: "",
     nodes: [
       {
         title: "DISCONNECT+ Band",
@@ -168,24 +163,24 @@ const ui = {
         body: "A Kunming venue inside 871 Cultural and Creative Factory, hosting electronic improvisation on Fridays or Saturdays from 21:00 to 22:30."
       },
       {
-        title: "Field Electric Noise",
-        meta: "Outdoor electric activity",
-        body: "An irregular outdoor electric-noise activity with advance signup, built around portable setups, environmental noise, and power limits."
+        title: "Wilderness Noise",
+        meta: "Outdoor noise activity",
+        body: "An irregular outdoor noise activity with advance signup, built around portable setups, environmental noise, and power limits."
       }
     ],
-    musicLead: "Listening entries can include band releases, Noise Box live recordings, and Field Electric Noise fragments.",
-    visualLead: "Collect music videos, posters, plugin interfaces, Noise Box photos, paintings, and outdoor fragments in one archive.",
-    showsLead: "Noise Box runs electronic improvisation on Fridays or Saturdays from 21:00 to 22:30. Field Electric Noise happens irregularly with advance signup.",
-    storeLead: "Reservations are open for physical merch, free open-source plugin inquiries, Noise Box sessions, and Field Electric Noise signup.",
+    musicLead: "",
+    visualLead: "",
+    showsLead: "Noise Box runs electronic improvisation on Fridays or Saturdays from 21:00 to 22:30. Wilderness Noise happens irregularly with advance signup.",
+    storeLead: "Reservations are open for physical merch, free open-source plugin inquiries, Noise Box sessions, and Wilderness Noise signup.",
     membersLead: "Band introduction and member files for press, booking, and collaboration.",
     bandBioEyebrow: "Press bio",
     bandBioTitle: "Experimental electronics / noise ambience / live improvisation",
     bandBioParagraphs: [
       "DISCONNECT+ is a growing sound project around experimental electronics, noise ambience, sound tools, and live spaces. Its core is the band performance, where synths, guitars, samples, effects, objects, sound devices, and rotating improvisers enter the same unstable system.",
       "DISCONNECT also extends into an audio plugin brand, turning recurring live processes such as distortion, random modulation, texture generation, and spatial treatment into free open-source sound tools. Noise Box is the physical room of the project, located inside 871 Cultural and Creative Factory in Kunming, Yunnan, and hosting electronic improvisation, compact shows, device tests, and cross-player sessions on Fridays or Saturdays from 21:00 to 22:30.",
-      "Field Electric Noise moves electronic setups outdoors, happening irregularly with advance signup and testing sound through portable power, environmental noise, weather, distance, and open space. DISCONNECT+ is open to livehouse shows, art spaces, screenings, cross-media performances, experimental music events, plugin demonstrations, and sound/visual collaborations."
+      "Wilderness Noise moves electronic setups outdoors, happening irregularly with advance signup and testing sound through portable power, environmental noise, weather, distance, and open space. DISCONNECT+ is open to livehouse shows, art spaces, screenings, cross-media performances, experimental music events, plugin demonstrations, and sound/visual collaborations."
     ],
-    bandBioTags: ["noise", "ambient", "plugins", "Noise Box", "field electric noise"],
+    bandBioTags: ["noise", "ambient", "plugins", "Noise Box", "wilderness noise"],
     newsLead: "Use news for releases, shows, collaborations, and merch restocks.",
     orderTitle: "Reserve / purchase intent",
     privacyNotice:
@@ -200,7 +195,6 @@ const ui = {
     soldOut: "Sold out",
     stock: "Stock",
     contactBand: "Contact / collaboration",
-    booking: "Booking",
     admin: "Admin",
     privacy: "Privacy",
     sourceCode: "Source",
@@ -559,7 +553,7 @@ export function PublicSite() {
               <span className="eyebrow">00 / Signal network</span>
               <h2>{ui[lang].nav.nodes}</h2>
             </div>
-            <p>{ui[lang].nodesLead}</p>
+            {ui[lang].nodesLead && <p>{ui[lang].nodesLead}</p>}
           </div>
           <div className="grid four">
             {ui[lang].nodes.map((node, index) => {
@@ -589,7 +583,7 @@ export function PublicSite() {
               <span className="eyebrow">01 / Audio tools</span>
               <h2>{ui[lang].nav.plugins}</h2>
             </div>
-            <p>{ui[lang].pluginLead}</p>
+            {ui[lang].pluginLead && <p>{ui[lang].pluginLead}</p>}
           </div>
           <div className="plugin-grid">
             {activePlugins.map((plugin) => (
@@ -638,7 +632,7 @@ export function PublicSite() {
               <span className="eyebrow">02 / Transmissions</span>
               <h2>{ui[lang].nav.music}</h2>
             </div>
-            <p>{ui[lang].musicLead}</p>
+            {ui[lang].musicLead && <p>{ui[lang].musicLead}</p>}
           </div>
           <div className="music-layout">
             <div className="image-panel">
@@ -687,7 +681,7 @@ export function PublicSite() {
               <span className="eyebrow">03 / Visual archive</span>
               <h2>{ui[lang].nav.visuals}</h2>
             </div>
-            <p>{ui[lang].visualLead}</p>
+            {ui[lang].visualLead && <p>{ui[lang].visualLead}</p>}
           </div>
           <div className="grid four">
             {content.visuals.map((visual) => (
@@ -954,8 +948,6 @@ export function PublicSite() {
             <strong>DISCONNECT+</strong>
             <p>
               {ui[lang].contactBand}: {content.settings.contactEmail}
-              <br />
-              {ui[lang].booking}: {content.settings.bookingEmail}
               <br />
               {text(content.settings.location, lang)}
             </p>

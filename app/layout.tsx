@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   ),
   title: "DISCONNECT+",
   description:
-    "DISCONNECT+ archive for experimental electronic music, free open-source DISCONNECT audio plugins, Noise Box in Kunming, and Field Electric Noise.",
+    "DISCONNECT+ archive for an experimental electronic band, independent DISCONNECT audio plugins, the Kunming Noise Box club, and Wilderness Noise.",
   openGraph: {
     title: "DISCONNECT+",
     description:
-      "Experimental electronics, free open-source audio plugins, Noise Box at 871 Cultural and Creative Factory in Kunming, field noise, visuals, artifacts, and contact.",
+      "Experimental electronics, independent audio plugins, the Noise Box club at 871 Cultural and Creative Factory in Kunming, Wilderness Noise, visuals, artifacts, and contact.",
     images: ["/images/skeleton_beach.jpg"]
   }
 };

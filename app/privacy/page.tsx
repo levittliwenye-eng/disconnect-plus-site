@@ -26,7 +26,7 @@ export default function PrivacyPage() {
       <section className="policy-section">
         <h2>我们会收集什么</h2>
         <p>
-          当你提交商店、插件咨询、Noise Box 报名或野外电燥报名时，网站会保存你填写的姓名或代号、
+          当你提交商店、插件咨询、Noise Box 报名或荒野噪音报名时，网站会保存你填写的姓名或代号、
           联系方式、选择的项目、数量和备注。联系方式可以是邮箱、微信、电话或你主动留下的其他方式。
         </p>
         <p>
