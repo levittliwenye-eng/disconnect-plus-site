@@ -11,7 +11,6 @@ import {
   MapPin,
   Pause,
   Play,
-  PlugZap,
   Radio,
   ShoppingBag,
   Ticket,
@@ -629,9 +628,6 @@ export function PublicSite() {
                     src={safeMediaSrc(plugin.imageUrl) || "/images/synth.jpg"}
                     alt={text(plugin.name, lang)}
                   />
-                  <div className="plugin-circuit" aria-hidden="true">
-                    <PlugZap size={22} />
-                  </div>
                 </div>
                 <div className="content-card-body">
                   <div className="plugin-meta">

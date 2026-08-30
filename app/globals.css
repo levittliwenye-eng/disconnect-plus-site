@@ -1077,38 +1077,23 @@ button:disabled {
 
 .plugin-card {
   display: grid;
-  grid-template-columns: minmax(220px, 0.58fr) minmax(0, 1fr);
-  min-height: 340px;
+  grid-template-columns: 1fr;
+  min-height: 0;
 }
 
 .plugin-media {
   position: relative;
-  min-height: 100%;
+  min-height: 0;
   overflow: hidden;
-  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
   background: #050505;
 }
 
 .plugin-media img {
   width: 100%;
-  height: 100%;
-  min-height: 340px;
-  filter: grayscale(1) contrast(1.22) brightness(0.76);
-  object-fit: cover;
-}
-
-.plugin-circuit {
-  position: absolute;
-  right: 18px;
-  bottom: 18px;
-  display: inline-flex;
-  width: 54px;
-  height: 54px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(77, 231, 255, 0.45);
-  background: rgba(0, 0, 0, 0.74);
-  color: var(--cyan);
+  height: auto;
+  object-fit: contain;
+  object-position: center;
 }
 
 .plugin-meta {
