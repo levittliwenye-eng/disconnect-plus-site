@@ -27,7 +27,10 @@ The demo password is only for local preview. It is not a production security bou
 
 ## Cloudflare Deployment
 
-Detailed setup notes live in `docs/cloudflare-launch-checklist.md`.
+Detailed setup notes:
+
+- `docs/cloudflare-launch-checklist.md`
+- `docs/cloudflare-dashboard-setup-zh.md`
 
 Use Cloudflare for the whole production stack:
 
