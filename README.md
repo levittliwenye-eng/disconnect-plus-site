@@ -31,6 +31,7 @@ Detailed setup notes:
 
 - `docs/cloudflare-launch-checklist.md`
 - `docs/cloudflare-dashboard-setup-zh.md`
+- `docs/cloudflare-live-status.md`
 
 Use Cloudflare for the whole production stack:
 
