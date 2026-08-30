@@ -29,4 +29,3 @@ Last checked: 2026-08-30
 - Change `NEXT_PUBLIC_SITE_URL` to the final `https://` domain and redeploy.
 - Configure Cloudflare Access for `/admin*` and `/api/admin/*`.
 - Set `CF_ACCESS_TEAM_DOMAIN` and `CF_ACCESS_AUD` after the Access application is created.
-
