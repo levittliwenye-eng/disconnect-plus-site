@@ -128,6 +128,7 @@ const ui = {
     contactBand: "联系 / 合作",
     booking: "演出合作",
     admin: "后台",
+    privacy: "隐私说明",
     sourceCode: "源代码",
     open: "打开"
   },
@@ -201,6 +202,7 @@ const ui = {
     contactBand: "Contact / collaboration",
     booking: "Booking",
     admin: "Admin",
+    privacy: "Privacy",
     sourceCode: "Source",
     open: "Open"
   }
@@ -899,7 +901,12 @@ export function PublicSite() {
                   <ShoppingBag size={17} />
                   {ui[lang].submitOrder}
                 </button>
-                <p className="status-line">{ui[lang].privacyNotice}</p>
+                <p className="status-line">
+                  {ui[lang].privacyNotice}{" "}
+                  <a className="inline-link" href="/privacy">
+                    {ui[lang].privacy}
+                  </a>
+                </p>
                 {orderStatus && <div className="status-line">{orderStatus}</div>}
               </form>
             </div>
@@ -963,6 +970,9 @@ export function PublicSite() {
             <a className="micro-link" href="/admin">
               <Archive size={12} />
               {ui[lang].admin}
+            </a>
+            <a className="micro-link" href="/privacy">
+              {ui[lang].privacy}
             </a>
           </div>
         </div>
