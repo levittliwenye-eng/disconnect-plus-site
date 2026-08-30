@@ -58,7 +58,7 @@ async function httpCheck(label, url, init, accept) {
       label,
       ok,
       status: response.status,
-      body: body.slice(0, 140).replace(/\s+/g, " ").trim()
+      body: body.slice(0, 180).replace(/\s+/g, " ").trim()
     };
   } catch (error) {
     return {
@@ -68,6 +68,14 @@ async function httpCheck(label, url, init, accept) {
       body: error instanceof Error ? error.message : String(error)
     };
   }
+}
+
+function hasHeader(response, name, expected) {
+  const value = response.headers.get(name) || "";
+  if (typeof expected === "string") {
+    return value.toLowerCase().includes(expected.toLowerCase());
+  }
+  return expected(value);
 }
 
 function line(status, message) {
@@ -122,6 +130,26 @@ if (!deployments.ok) {
 
 const checks = await Promise.all([
   httpCheck("home", `${siteUrl}/`, undefined, (status) => status === 200),
+  httpCheck("privacy page", `${siteUrl}/privacy/`, undefined, (status, body) => {
+    return status === 200 && body.includes("隐私说明") && body.includes("Cloudflare Access");
+  }),
+  httpCheck("robots policy", `${siteUrl}/robots.txt`, undefined, (status, body) => {
+    return status === 200 && body.includes("Disallow: /admin/") && body.includes("Disallow: /api/");
+  }),
+  httpCheck("sitemap", `${siteUrl}/sitemap.xml`, undefined, (status, body) => {
+    return status === 200 && body.includes(`${siteUrl}/</loc>`) && body.includes(`${siteUrl}/privacy/</loc>`);
+  }),
+  httpCheck("security headers", `${siteUrl}/`, undefined, (status, _body, response) => {
+    return (
+      status === 200 &&
+      hasHeader(response, "content-security-policy", "default-src 'self'") &&
+      hasHeader(response, "content-security-policy", "frame-ancestors 'none'") &&
+      hasHeader(response, "referrer-policy", "strict-origin-when-cross-origin") &&
+      hasHeader(response, "x-content-type-options", "nosniff") &&
+      hasHeader(response, "x-frame-options", "DENY") &&
+      hasHeader(response, "permissions-policy", "camera=()")
+    );
+  }),
   httpCheck("content api", `${siteUrl}/api/content`, undefined, (status, body) => {
     if (status !== 200) {
       return false;
@@ -133,7 +161,11 @@ const checks = await Promise.all([
       return false;
     }
   }),
+  httpCheck("api no-store", `${siteUrl}/api/content`, undefined, (status, _body, response) => {
+    return status === 200 && hasHeader(response, "cache-control", "no-store");
+  }),
   httpCheck("admin protection", `${siteUrl}/admin`, undefined, (status) => [301, 302, 401, 403].includes(status)),
+  httpCheck("admin api protection", `${siteUrl}/api/admin/session`, undefined, (status) => [301, 302, 401, 403].includes(status)),
   httpCheck(
     "order bot protection",
     `${siteUrl}/api/orders`,
