@@ -38,8 +38,9 @@ Use Cloudflare for the whole production stack:
 5. Create a Cloudflare D1 database, for example `disconnect_site`.
 6. Run `cloudflare/d1/schema.sql` against that D1 database.
 7. Add a Pages D1 binding named `DB`.
-8. Create a Cloudflare Turnstile widget for the domain.
-9. Add these Pages environment variables:
+8. If using Wrangler config, copy `wrangler.example.toml` to `wrangler.toml` and replace the D1 `database_id`.
+9. Create a Cloudflare Turnstile widget for the domain.
+10. Add these Pages environment variables:
 
 ```text
 NEXT_PUBLIC_SITE_URL=https://your-domain.example
@@ -47,8 +48,8 @@ NEXT_PUBLIC_TURNSTILE_SITE_KEY=
 TURNSTILE_SECRET_KEY=
 ```
 
-10. Protect `/admin*` and `/api/admin/*` with Cloudflare Access.
-11. Add these Pages environment variables from the Access app:
+11. Protect `/admin*` and `/api/admin/*` with Cloudflare Access.
+12. Add these Pages environment variables from the Access app:
 
 ```text
 CF_ACCESS_TEAM_DOMAIN=your-team.cloudflareaccess.com

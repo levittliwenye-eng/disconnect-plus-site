@@ -4,8 +4,9 @@
 
 - Use the new source repository for the rebuilt site: `levittliwenye-eng/disconnect-plus-site`.
 - Keep `main` as the production branch.
-- Connect Cloudflare Pages to this repository after the first push succeeds.
-- The old `levittliwenye-eng/Disconnect-website` repository is only the previous website and can be deleted after the new repository is verified.
+- Connect Cloudflare Pages to this repository.
+- The old `levittliwenye-eng/Disconnect-website` repository has been removed after the new repository was verified.
+- The new repository was initialized from the current site snapshot. The local folder still keeps the earlier development history.
 
 ## Cloudflare Pages
 
@@ -13,12 +14,16 @@
 - Build command: `npm run build`.
 - Build output directory: `out`.
 - Production branch: `main`.
+- Environment: Production.
+- Node.js version: use Cloudflare's current default Node runtime unless the build log asks for a specific version.
 
 ## Cloudflare D1
 
 - Create a D1 database, for example `disconnect_site`.
 - Run `cloudflare/d1/schema.sql` against the database.
 - Add a Pages D1 binding named `DB`.
+- If using Wrangler config, copy `wrangler.example.toml` to `wrangler.toml` and replace `database_id` with the real D1 database ID.
+- If using the Cloudflare dashboard, keep the same binding name: `DB`.
 
 ## Environment Variables
 
@@ -49,12 +54,14 @@ Do not commit real secrets, API tokens, Turnstile secret keys, Access secrets, o
   - `/`
   - `/api/content`
   - `/api/orders`
+- Keep `/api/orders` public, but require Turnstile in production before advertising store or plugin reservations.
 
 ## Domain
 
 - Buy or transfer the production domain in Cloudflare.
 - Attach it to the Cloudflare Pages project.
 - Set `NEXT_PUBLIC_SITE_URL` to the final `https://` domain.
+- Use HTTPS only. Do not publish the final link until the Pages custom domain status is active.
 
 ## Media
 
