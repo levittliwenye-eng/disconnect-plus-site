@@ -1,6 +1,5 @@
 Contact: mailto:disconnectaudio@sina.com
 Expires: 2027-08-30T00:00:00Z
 Preferred-Languages: zh,en
-Canonical: https://disconnect-plus-site.pages.dev/.well-known/security.txt
-Policy: https://disconnect-plus-site.pages.dev/privacy/
-
+Canonical: https://disconnectplus.com/.well-known/security.txt
+Policy: https://disconnectplus.com/privacy/

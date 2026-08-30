@@ -3,6 +3,9 @@
   "name": "disconnect-plus-site",
   "compatibility_date": "2026-08-30",
   "pages_build_output_dir": "out",
+  "vars": {
+    "NEXT_PUBLIC_SITE_URL": "https://disconnectplus.com"
+  },
   "d1_databases": [
     {
       "binding": "DB",

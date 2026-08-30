@@ -3,12 +3,11 @@
 import { spawnSync } from "node:child_process";
 
 const projectName = process.env.DISCONNECT_CF_PROJECT || "disconnect-plus-site";
-const siteUrl = (process.env.DISCONNECT_SITE_URL || "https://disconnect-plus-site.pages.dev").replace(/\/$/, "");
+const siteUrl = (process.env.DISCONNECT_SITE_URL || "https://disconnectplus.com").replace(/\/$/, "");
 const strict = process.argv.includes("--strict");
 
 const requiredSecrets = [
   "ADMIN_EMAILS",
-  "NEXT_PUBLIC_SITE_URL",
   "NEXT_PUBLIC_TURNSTILE_SITE_KEY",
   "TURNSTILE_SECRET_KEY"
 ];
@@ -197,7 +196,9 @@ if (todos.length > 0) {
   for (const todo of todos) {
     console.log(`- ${todo}`);
   }
-  console.log("- Buy or bind the final Cloudflare-managed domain, then add it to Turnstile allowed domains.");
+  if (siteUrl.endsWith(".pages.dev")) {
+    console.log("- Buy or bind the final Cloudflare-managed domain, then add it to Turnstile allowed domains.");
+  }
 }
 
 if (problems.length > 0) {

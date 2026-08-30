@@ -41,10 +41,15 @@ Database: disconnect_site
 
 ## 3. 设置环境变量
 
-在 Cloudflare Pages 的 Production 环境变量里填写：
+`NEXT_PUBLIC_SITE_URL` 由 `wrangler.jsonc` 的 `vars` 管理，当前值为：
 
 ```text
-NEXT_PUBLIC_SITE_URL=https://你的正式域名
+NEXT_PUBLIC_SITE_URL=https://disconnectplus.com
+```
+
+在 Cloudflare Pages 的 Production 环境变量里填写其余密钥：
+
+```text
 NEXT_PUBLIC_TURNSTILE_SITE_KEY=你的 Turnstile site key
 TURNSTILE_SECRET_KEY=你的 Turnstile secret key
 CF_ACCESS_TEAM_DOMAIN=你的 Cloudflare Access team domain
@@ -92,7 +97,7 @@ docs/cloudflare-access-api-setup-zh.md
 
 ## 6. 绑定域名
 
-域名在 Cloudflare 购买或迁入后，把它绑定到 Pages 项目。
+正式域名为 `disconnectplus.com`，已在 Cloudflare 购买并绑定到 Pages 项目。
 
 推荐顺序：
 

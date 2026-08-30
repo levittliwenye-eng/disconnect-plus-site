@@ -18,7 +18,7 @@
 ```bash
 export CLOUDFLARE_ACCOUNT_ID="你的 Cloudflare Account ID"
 export CLOUDFLARE_API_TOKEN="你的临时 Cloudflare API token"
-export DISCONNECT_SITE_HOSTNAME="disconnect-plus-site.pages.dev"
+export DISCONNECT_SITE_HOSTNAME="disconnectplus.com"
 export DISCONNECT_ADMIN_EMAIL="disconnectaudio@sina.com"
 ```
 
@@ -33,8 +33,8 @@ node scripts/setup-cloudflare-access.mjs
 - 读取当前 Zero Trust 组织的 `auth_domain`
 - 复用或创建 One-time PIN 身份源
 - 创建 `DISCONNECT+ Admin` Access 应用
-- 保护 `disconnect-plus-site.pages.dev/admin*`
-- 保护 `disconnect-plus-site.pages.dev/api/admin/*`
+- 保护 `disconnectplus.com/admin*`
+- 保护 `disconnectplus.com/api/admin/*`
 - 只允许 `disconnectaudio@sina.com`
 
 运行成功后，它会输出：
@@ -59,4 +59,3 @@ npx wrangler pages secret put CF_ACCESS_AUD --project-name disconnect-plus-site
 - 不要使用 Include login methods = One-time PIN 作为唯一允许条件，因为这会允许任何能收邮件的人。
 - 只允许明确邮箱：`disconnectaudio@sina.com`。
 - API token 用完后删除。
-

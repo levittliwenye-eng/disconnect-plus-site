@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://disconnect.plus"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://disconnectplus.com"
   ),
   title: "DISCONNECT+",
   description:

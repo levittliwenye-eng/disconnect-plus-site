@@ -2,7 +2,7 @@
 
 const apiToken = process.env.CLOUDFLARE_API_TOKEN;
 const accountId = process.env.CLOUDFLARE_ACCOUNT_ID;
-const hostname = process.env.DISCONNECT_SITE_HOSTNAME || "disconnect-plus-site.pages.dev";
+const hostname = process.env.DISCONNECT_SITE_HOSTNAME || "disconnectplus.com";
 const adminEmail = process.env.DISCONNECT_ADMIN_EMAIL || "disconnectaudio@sina.com";
 
 if (!apiToken || !accountId) {

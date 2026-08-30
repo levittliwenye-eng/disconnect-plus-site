@@ -45,10 +45,15 @@ Use Cloudflare for the whole production stack:
 7. Add a Pages D1 binding named `DB`.
 8. If using Wrangler config, copy `wrangler.example.jsonc` to `wrangler.jsonc` and replace the D1 `database_id`.
 9. Create a Cloudflare Turnstile widget for the domain.
-10. Add these Pages environment variables:
+10. Set the public site URL in `wrangler.jsonc` under `vars`:
 
 ```text
-NEXT_PUBLIC_SITE_URL=https://your-domain.example
+NEXT_PUBLIC_SITE_URL=https://disconnectplus.com
+```
+
+Add the Turnstile values as Pages environment variables:
+
+```text
 NEXT_PUBLIC_TURNSTILE_SITE_KEY=
 TURNSTILE_SECRET_KEY=
 ```
