@@ -548,6 +548,17 @@ button:disabled {
   margin-top: 34px;
 }
 
+.hero-entry-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.hero-secondary-actions {
+  margin-top: 14px;
+}
+
 .hero-copy {
   max-width: 620px;
   color: #d4d4d8;
@@ -659,6 +670,16 @@ button:disabled {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: inherit;
+  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.node-card:hover,
+.node-card:focus-visible {
+  border-color: rgba(118, 255, 179, 0.62);
+  background: rgba(118, 255, 179, 0.055);
+  transform: translateY(-3px);
+  outline: none;
 }
 
 .node-icon {
@@ -1571,6 +1592,16 @@ button:disabled {
 
   .hero h1 {
     font-size: 3.1rem;
+  }
+
+  .hero-entry-actions,
+  .hero-secondary-actions {
+    width: 100%;
+  }
+
+  .hero-entry-actions .text-button,
+  .hero-entry-actions .ghost-button {
+    flex: 1 1 180px;
   }
 
   .hero-stat {

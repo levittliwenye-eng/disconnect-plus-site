@@ -70,8 +70,9 @@ const ui = {
       store: "商店"
     },
     heroKicker: "实验电子乐队 / 独立音频插件 / Noise Box俱乐部 / 荒野噪音",
-    heroCopy:
-      "DISCONNECT+ 实验电子乐队、独立音频插件、昆明 Noise Box俱乐部，以及不定期发生的荒野噪音活动。",
+    heroCopy: "",
+    noiseBoxSignup: "Noise Box 报名",
+    wildernessSignup: "荒野噪音报名",
     listen: "立即试听",
     latestSignal: "当前信号",
     nodesLead: "",
@@ -80,34 +81,38 @@ const ui = {
       {
         title: "DISCONNECT+ 乐队",
         meta: "Experimental electronic band",
-        body: "噪音、氛围、合成器、吉他、采样和不同乐手的现场即兴，是整个系统的声音核心。"
+        body: "噪音、氛围、合成器、吉他、采样和不同乐手的现场即兴，是整个系统的声音核心。",
+        href: "#archive"
       },
       {
         title: "DISCONNECT Plugins",
         meta: "Audio plugin brand",
-        body: "把现场里常用的失真、纹理、随机调制和空间处理，发展成免费发布、全开源的声音工具。"
+        body: "把现场里常用的失真、纹理、随机调制和空间处理，发展成可以下载、演示和继续扩展的声音工具。",
+        href: "#plugins"
       },
       {
         title: "Noise Box",
         meta: "Weekly improv venue",
-        body: "云南昆明 871文化创意工厂里的演出场地，每周五或周六 21:00-22:30 组织电子音乐即兴。"
+        body: "云南昆明 871文化创意工厂里的演出场地，每周五或周六 21:00-22:30 组织电子音乐即兴。",
+        href: "#shows"
       },
       {
         title: "荒野噪音",
         meta: "Wilderness noise",
-        body: "不定期举行，提前报名，把电声设备带到户外，在环境噪声和电源限制里做开放现场实验。"
+        body: "不定期举行，提前报名，把电声设备带到户外，在环境噪声和电源限制里做开放现场实验。",
+        href: "#shows"
       }
     ],
     musicLead: "",
     visualLead: "",
     showsLead: "Noise Box 固定在周五或周六 21:00-22:30 进行电子音乐即兴；荒野噪音不定期举行，需要提前报名。",
-    storeLead: "商店/预约已经开放：实体周边、免费开源插件咨询、Noise Box 活动名额和荒野噪音报名都可以在这里管理。",
+    storeLead: "商店/预约已经开放：实体周边、音频插件咨询、Noise Box 活动名额和荒野噪音报名都可以在这里管理。",
     membersLead: "给媒体、演出方和合作项目使用的乐队介绍与成员档案。",
     bandBioEyebrow: "Press bio",
     bandBioTitle: "实验电子 / 噪音氛围 / 现场即兴",
     bandBioParagraphs: [
       "DISCONNECT+ 是一组围绕实验电子、噪音氛围、声音工具和现场空间持续生长的声音项目。它以乐队现场为核心，合成器、吉他、采样、效果器、打击物、声响装置与不同乐手的即兴反应共同进入同一个系统，在不稳定的结构中生成新的路径。",
-      "DISCONNECT 同时延伸为音频插件品牌，把现场中反复出现的失真、随机调制、纹理生成和空间处理整理成免费发布、全开源的声音工具。Noise Box 是项目的线下发生地，位于云南昆明 871文化创意工厂，每周五或周六 21:00-22:30 组织电子音乐即兴、小型演出、设备试验和跨乐手合奏。",
+      "DISCONNECT 同时延伸为音频插件品牌，把现场中反复出现的失真、随机调制、纹理生成和空间处理整理成可以发布、下载、演示和继续扩展的声音工具。Noise Box 是项目的线下发生地，位于云南昆明 871文化创意工厂，每周五或周六 21:00-22:30 组织电子音乐即兴、小型演出、设备试验和跨乐手合奏。",
       "荒野噪音则把电子设备带离室内，不定期在户外空间举行，并通过提前报名组织参与者。移动电源、环境声、天气和距离会进入声音系统。DISCONNECT+ 接受 Livehouse、艺术空间、影像放映、跨媒介现场、实验音乐活动、插件演示和声音/视觉合作邀请。"
     ],
     bandBioTags: ["noise", "ambient", "plugins", "Noise Box", "wilderness noise"],
@@ -140,8 +145,9 @@ const ui = {
       store: "Store"
     },
     heroKicker: "Experimental band / independent audio plugins / Noise Box club / wilderness noise",
-    heroCopy:
-      "DISCONNECT+ links an experimental electronic band, independent audio plugins, the Kunming Noise Box club, and irregular Wilderness Noise gatherings.",
+    heroCopy: "",
+    noiseBoxSignup: "Noise Box signup",
+    wildernessSignup: "Wilderness Noise signup",
     listen: "Listen now",
     latestSignal: "Current signal",
     nodesLead: "",
@@ -150,34 +156,38 @@ const ui = {
       {
         title: "DISCONNECT+ Band",
         meta: "Experimental electronic band",
-        body: "Noise, ambience, synths, guitars, samples, and rotating improvisers form the sonic core of the whole system."
+        body: "Noise, ambience, synths, guitars, samples, and rotating improvisers form the sonic core of the whole system.",
+        href: "#archive"
       },
       {
         title: "DISCONNECT Plugins",
         meta: "Audio plugin brand",
-        body: "Distortion, texture, random modulation, and spatial processes from live practice become free open-source sound tools."
+        body: "Distortion, texture, random modulation, and spatial processes from live practice become downloadable, demonstrable, and extensible sound tools.",
+        href: "#plugins"
       },
       {
         title: "Noise Box",
         meta: "Weekly improv venue",
-        body: "A Kunming venue inside 871 Cultural and Creative Factory, hosting electronic improvisation on Fridays or Saturdays from 21:00 to 22:30."
+        body: "A Kunming venue inside 871 Cultural and Creative Factory, hosting electronic improvisation on Fridays or Saturdays from 21:00 to 22:30.",
+        href: "#shows"
       },
       {
         title: "Wilderness Noise",
         meta: "Outdoor noise activity",
-        body: "An irregular outdoor noise activity with advance signup, built around portable setups, environmental noise, and power limits."
+        body: "An irregular outdoor noise activity with advance signup, built around portable setups, environmental noise, and power limits.",
+        href: "#shows"
       }
     ],
     musicLead: "",
     visualLead: "",
     showsLead: "Noise Box runs electronic improvisation on Fridays or Saturdays from 21:00 to 22:30. Wilderness Noise happens irregularly with advance signup.",
-    storeLead: "Reservations are open for physical merch, free open-source plugin inquiries, Noise Box sessions, and Wilderness Noise signup.",
+    storeLead: "Reservations are open for physical merch, audio plugin inquiries, Noise Box sessions, and Wilderness Noise signup.",
     membersLead: "Band introduction and member files for press, booking, and collaboration.",
     bandBioEyebrow: "Press bio",
     bandBioTitle: "Experimental electronics / noise ambience / live improvisation",
     bandBioParagraphs: [
       "DISCONNECT+ is a growing sound project around experimental electronics, noise ambience, sound tools, and live spaces. Its core is the band performance, where synths, guitars, samples, effects, objects, sound devices, and rotating improvisers enter the same unstable system.",
-      "DISCONNECT also extends into an audio plugin brand, turning recurring live processes such as distortion, random modulation, texture generation, and spatial treatment into free open-source sound tools. Noise Box is the physical room of the project, located inside 871 Cultural and Creative Factory in Kunming, Yunnan, and hosting electronic improvisation, compact shows, device tests, and cross-player sessions on Fridays or Saturdays from 21:00 to 22:30.",
+      "DISCONNECT also extends into an audio plugin brand, turning recurring live processes such as distortion, random modulation, texture generation, and spatial treatment into sound tools that can be released, downloaded, demonstrated, and expanded. Noise Box is the physical room of the project, located inside 871 Cultural and Creative Factory in Kunming, Yunnan, and hosting electronic improvisation, compact shows, device tests, and cross-player sessions on Fridays or Saturdays from 21:00 to 22:30.",
       "Wilderness Noise moves electronic setups outdoors, happening irregularly with advance signup and testing sound through portable power, environmental noise, weather, distance, and open space. DISCONNECT+ is open to livehouse shows, art spaces, screenings, cross-media performances, experimental music events, plugin demonstrations, and sound/visual collaborations."
     ],
     bandBioTags: ["noise", "ambient", "plugins", "Noise Box", "wilderness noise"],
@@ -525,15 +535,41 @@ export function PublicSite() {
               DISCONNECT+
             </span>
           </h1>
-          <div className="hero-subgrid">
-            <p className="hero-copy">{ui[lang].heroCopy}</p>
-            <div className="hero-stat">
-              <span className="eyebrow">{ui[lang].latestSignal}</span>
-              <strong>{content.songs.length}</strong>
-              <span className="tiny">transmissions online</span>
+          {ui[lang].heroCopy && (
+            <div className="hero-subgrid">
+              <p className="hero-copy">{ui[lang].heroCopy}</p>
+              <div className="hero-stat">
+                <span className="eyebrow">{ui[lang].latestSignal}</span>
+                <strong>{content.songs.length}</strong>
+                <span className="tiny">transmissions online</span>
+              </div>
             </div>
+          )}
+          <div className="hero-entry-actions">
+            <a
+              className="text-button"
+              href="#store"
+              onClick={() => {
+                setSelectedProductId("noise-box-session-ticket");
+                setOrderStatus("");
+              }}
+            >
+              <Ticket size={17} />
+              {ui[lang].noiseBoxSignup}
+            </a>
+            <a
+              className="ghost-button"
+              href="#store"
+              onClick={() => {
+                setSelectedProductId("wilderness-noise-signup");
+                setOrderStatus("");
+              }}
+            >
+              <Zap size={17} />
+              {ui[lang].wildernessSignup}
+            </a>
           </div>
-          <div className="admin-actions">
+          <div className="admin-actions hero-secondary-actions">
             <a className="text-button" href="#music">
               <Volume2 size={17} />
               {ui[lang].listen}
@@ -560,7 +596,7 @@ export function PublicSite() {
               const Icon = nodeIcons[index] ?? Radio;
 
               return (
-                <article className="content-card node-card" key={node.title}>
+                <a className="content-card node-card" href={node.href} key={node.title}>
                   <div className="node-icon" aria-hidden="true">
                     <Icon size={22} />
                   </div>
@@ -569,7 +605,7 @@ export function PublicSite() {
                     <h3>{node.title}</h3>
                     <p>{node.body}</p>
                   </div>
-                </article>
+                </a>
               );
             })}
           </div>
@@ -906,7 +942,7 @@ export function PublicSite() {
             </div>
             <div className="grid three">
               {activeProducts.map((product: Product) => (
-                <article className="content-card product-card" key={product.id}>
+                <article className="content-card product-card" id={product.id} key={product.id}>
                   <img
                     src={safeMediaSrc(product.imageUrl) || "/images/my_record.jpg"}
                     alt={text(product.name, lang)}

@@ -5,6 +5,8 @@ export const imageOptions = [
   "/images/skeleton_lightning.jpg",
   "/images/guitar.jpg",
   "/images/synth.jpg",
+  "/images/the-bureaucrat-plugin.png",
+  "/images/pigen2-plugin.png",
   "/images/my_record.jpg",
   "/images/hc.jpg",
   "/images/qz.jpg",
@@ -63,8 +65,8 @@ export const defaultContent: CmsContent = {
         zh: "DISCONNECT+ 转为声音生态档案"
       },
       summary: {
-        en: "The site now connects the band, free open-source DISCONNECT audio plugins, Noise Box in Kunming, and Wilderness Noise outdoor activity.",
-        zh: "网站开始同时记录乐队、免费开源的 DISCONNECT 音频插件、昆明 Noise Box，以及荒野噪音活动。"
+        en: "The site now connects the band, independent DISCONNECT audio plugins, Noise Box in Kunming, and Wilderness Noise outdoor activity.",
+        zh: "网站开始同时记录乐队、独立的 DISCONNECT 音频插件、昆明 Noise Box，以及荒野噪音活动。"
       },
       pinned: true
     },
@@ -87,8 +89,8 @@ export const defaultContent: CmsContent = {
       date: "2026-09-12",
       category: { en: "Plugins", zh: "插件" },
       title: {
-        en: "THE BUREAUCRAT and PiGen2 are free open-source releases",
-        zh: "THE BUREAUCRAT 与 PiGen2 免费开源发布"
+        en: "THE BUREAUCRAT and PiGen2 are public plugin releases",
+        zh: "THE BUREAUCRAT 与 PiGen2 公开发布"
       },
       summary: {
         en: "Both plugin projects are public on GitHub, with source code, documentation, and future release notes collected here.",
@@ -124,7 +126,7 @@ export const defaultContent: CmsContent = {
         en: "A Pravda Audio / DISCONNECT audio effect for asymmetric drive, timing disruption, phase interference, filtering, overload control, and long feedback delay.",
         zh: "Pravda Audio / DISCONNECT audio 的声音效果器，用于非对称驱动、时间扰动、相位干涉、滤波、过载控制和长反馈延迟。"
       },
-      imageUrl: "/images/synth.jpg",
+      imageUrl: "/images/the-bureaucrat-plugin.png",
       repoUrl: "https://github.com/levittliwenye-eng/the-bureaucrat",
       active: true,
       links: [
@@ -143,7 +145,7 @@ export const defaultContent: CmsContent = {
         en: "A deterministic pi-driven MIDI sequencer for Ableton Live, mapping positions in pi into pitch, rhythm, gate, velocity, scales, and transport-synced patterns.",
         zh: "一个由圆周率驱动的 Ableton Live MIDI 序列器，把 π 的位置映射为音高、节奏、门限、力度、音阶和同步图案。"
       },
-      imageUrl: "/images/qz.jpg",
+      imageUrl: "/images/pigen2-plugin.png",
       repoUrl: "https://github.com/levittliwenye-eng/pigen2",
       active: true,
       links: [
@@ -280,7 +282,7 @@ export const defaultContent: CmsContent = {
       type: { en: "AU / VST3 plugin", zh: "AU / VST3 插件" },
       price: "Free",
       availability: { en: "Free release / open source", zh: "免费发布 / 全开源" },
-      imageUrl: "/images/synth.jpg",
+      imageUrl: "/images/the-bureaucrat-plugin.png",
       stock: 999,
       active: true,
       externalUrl: "https://github.com/levittliwenye-eng/the-bureaucrat"
@@ -291,7 +293,7 @@ export const defaultContent: CmsContent = {
       type: { en: "Max for Live MIDI sequencer", zh: "Max for Live MIDI 序列器" },
       price: "Free",
       availability: { en: "Free release / open source", zh: "免费发布 / 全开源" },
-      imageUrl: "/images/qz.jpg",
+      imageUrl: "/images/pigen2-plugin.png",
       stock: 999,
       active: true,
       externalUrl: "https://github.com/levittliwenye-eng/pigen2/releases"
