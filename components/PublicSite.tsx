@@ -18,7 +18,7 @@ import {
   Volume2,
   Zap
 } from "lucide-react";
-import { FormEvent, ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import { FormEvent, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   loadSiteContent,
   submitOrderIntent
@@ -40,7 +40,18 @@ type Lang = "zh" | "en";
 declare global {
   interface Window {
     turnstile?: {
-      reset: () => void;
+      render: (
+        container: HTMLElement | string,
+        options: {
+          sitekey: string;
+          theme?: "dark" | "light" | "auto";
+          callback?: (token: string) => void;
+          "expired-callback"?: () => void;
+          "error-callback"?: () => void;
+        }
+      ) => string;
+      reset: (widgetId?: string) => void;
+      remove?: (widgetId: string) => void;
     };
   }
 }
@@ -239,18 +250,75 @@ function SafeLink({
   );
 }
 
-function TurnstileField() {
+function TurnstileField({
+  token,
+  onTokenChange
+}: {
+  token: string;
+  onTokenChange: (token: string) => void;
+}) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const widgetIdRef = useRef("");
+
+  useEffect(() => {
+    if (!turnstileSiteKey) {
+      return;
+    }
+
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let attempts = 0;
+
+    function renderWidget() {
+      if (cancelled || widgetIdRef.current || !containerRef.current) {
+        return;
+      }
+
+      const turnstile = window.turnstile;
+      if (!turnstile?.render) {
+        attempts += 1;
+        if (attempts <= 50) {
+          timer = setTimeout(renderWidget, 120);
+        }
+        return;
+      }
+
+      if (cancelled || widgetIdRef.current || !containerRef.current) {
+        return;
+      }
+
+      widgetIdRef.current = turnstile.render(containerRef.current, {
+        sitekey: turnstileSiteKey,
+        theme: "dark",
+        callback: onTokenChange,
+        "expired-callback": () => onTokenChange(""),
+        "error-callback": () => onTokenChange("")
+      });
+    }
+
+    renderWidget();
+
+    return () => {
+      cancelled = true;
+      if (timer) {
+        clearTimeout(timer);
+      }
+      if (widgetIdRef.current && window.turnstile?.remove) {
+        window.turnstile.remove(widgetIdRef.current);
+      }
+      widgetIdRef.current = "";
+      onTokenChange("");
+    };
+  }, [onTokenChange]);
+
   if (!turnstileSiteKey) {
     return null;
   }
 
   return (
     <div className="turnstile-field">
-      <div
-        className="cf-turnstile"
-        data-sitekey={turnstileSiteKey}
-        data-theme="dark"
-      />
+      <div ref={containerRef} />
+      <input name="cf-turnstile-response" type="hidden" value={token} readOnly />
     </div>
   );
 }
@@ -258,10 +326,6 @@ function TurnstileField() {
 function getTurnstileToken(form: HTMLFormElement) {
   const value = new FormData(form).get("cf-turnstile-response");
   return typeof value === "string" ? value : "";
-}
-
-function resetTurnstile() {
-  window.turnstile?.reset();
 }
 
 const nodeIcons = [Radio, Cpu, MapPin, Zap];
@@ -280,6 +344,8 @@ export function PublicSite() {
   const [activeSongId, setActiveSongId] = useState(content.songs[0]?.id ?? "");
   const [isPlaying, setIsPlaying] = useState(false);
   const [orderStatus, setOrderStatus] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
   const [selectedProductId, setSelectedProductId] = useState(content.products[0]?.id ?? "");
   const [orderForm, setOrderForm] = useState({
     customerName: "",
@@ -296,6 +362,9 @@ export function PublicSite() {
   const activeProducts = content.products.filter((product) => product.active);
   const selectedProduct =
     activeProducts.find((product) => product.id === selectedProductId) ?? activeProducts[0];
+  const handleTurnstileToken = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
 
   useEffect(() => {
     async function hydrate() {
@@ -360,7 +429,8 @@ export function PublicSite() {
 
       setOrderForm({ customerName: "", contact: "", quantity: 1, notes: "" });
       setOrderStatus(ui[lang].orderSent);
-      resetTurnstile();
+      setTurnstileToken("");
+      setTurnstileResetKey((current) => current + 1);
     } catch (error) {
       setOrderStatus(error instanceof Error ? error.message : "Submit failed.");
     }
@@ -820,7 +890,11 @@ export function PublicSite() {
                     }
                   />
                 </label>
-                <TurnstileField />
+                <TurnstileField
+                  key={turnstileResetKey}
+                  token={turnstileToken}
+                  onTokenChange={handleTurnstileToken}
+                />
                 <button className="text-button" type="submit">
                   <ShoppingBag size={17} />
                   {ui[lang].submitOrder}

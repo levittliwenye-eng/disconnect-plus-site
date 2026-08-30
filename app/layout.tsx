@@ -29,8 +29,7 @@ export default function RootLayout({
         {children}
         {turnstileSiteKey && (
           <script
-            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-            async
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
             defer
           />
         )}
