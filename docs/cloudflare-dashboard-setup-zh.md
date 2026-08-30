@@ -41,15 +41,10 @@ Database: disconnect_site
 
 ## 3. 设置环境变量
 
-`NEXT_PUBLIC_SITE_URL` 由 `wrangler.jsonc` 的 `vars` 管理，当前值为：
+在 Cloudflare Pages 的 Production 环境变量里填写：
 
 ```text
 NEXT_PUBLIC_SITE_URL=https://disconnectplus.com
-```
-
-在 Cloudflare Pages 的 Production 环境变量里填写其余密钥：
-
-```text
 NEXT_PUBLIC_TURNSTILE_SITE_KEY=你的 Turnstile site key
 TURNSTILE_SECRET_KEY=你的 Turnstile secret key
 CF_ACCESS_TEAM_DOMAIN=你的 Cloudflare Access team domain

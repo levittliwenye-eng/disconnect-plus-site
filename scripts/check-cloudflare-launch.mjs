@@ -8,6 +8,7 @@ const strict = process.argv.includes("--strict");
 
 const requiredSecrets = [
   "ADMIN_EMAILS",
+  "NEXT_PUBLIC_SITE_URL",
   "NEXT_PUBLIC_TURNSTILE_SITE_KEY",
   "TURNSTILE_SECRET_KEY"
 ];
