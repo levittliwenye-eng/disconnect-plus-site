@@ -79,6 +79,10 @@ function localFallbackAllowed() {
   return !isBrowser() || isLocalBrowser();
 }
 
+function useLocalStoreOnly() {
+  return isLocalBrowser();
+}
+
 export function createEmptyId(prefix: string) {
   return nowId(prefix);
 }
@@ -95,6 +99,10 @@ export async function checkAdminSession() {
 }
 
 export async function loadSiteContent(): Promise<CmsContent> {
+  if (useLocalStoreOnly()) {
+    return normalizeCmsContent(readLocal<CmsContent>(CONTENT_KEY, defaultContent));
+  }
+
   try {
     const { content } = await fetchJson<{ content: CmsContent }>("/api/content");
     return normalizeCmsContent(content);
@@ -105,6 +113,11 @@ export async function loadSiteContent(): Promise<CmsContent> {
 
 export async function saveSiteContent(content: CmsContent) {
   const normalizedContent = normalizeCmsContent(content);
+  if (useLocalStoreOnly()) {
+    writeLocal(CONTENT_KEY, normalizedContent);
+    return normalizedContent;
+  }
+
   try {
     const { content: saved } = await fetchJson<{ content: CmsContent }>("/api/admin/content", {
       method: "POST",
@@ -124,6 +137,10 @@ export async function saveSiteContent(content: CmsContent) {
 }
 
 export async function loadOrders() {
+  if (useLocalStoreOnly()) {
+    return readLocal<OrderIntent[]>(ORDERS_KEY, defaultOrders);
+  }
+
   try {
     const { orders } = await fetchJson<{ orders: OrderIntent[] }>("/api/admin/orders");
     return orders;
@@ -159,6 +176,12 @@ export async function submitOrderIntent(
     createdAt: new Date().toISOString()
   };
 
+  if (useLocalStoreOnly()) {
+    const local = readLocal<OrderIntent[]>(ORDERS_KEY, defaultOrders);
+    writeLocal(ORDERS_KEY, [entry, ...local]);
+    return entry;
+  }
+
   try {
     const { order } = await fetchJson<{ order: OrderIntent }>("/api/orders", {
       method: "POST",
@@ -183,6 +206,13 @@ export async function updateOrderIntent(
   id: string,
   patch: Partial<OrderIntent>
 ) {
+  if (useLocalStoreOnly()) {
+    const local = readLocal<OrderIntent[]>(ORDERS_KEY, defaultOrders);
+    const next = local.map((order) => (order.id === id ? { ...order, ...patch } : order));
+    writeLocal(ORDERS_KEY, next);
+    return next.find((order) => order.id === id) ?? null;
+  }
+
   try {
     const { order } = await fetchJson<{ order: OrderIntent }>(
       `/api/admin/orders/${encodeURIComponent(id)}`,
@@ -205,6 +235,13 @@ export async function updateOrderIntent(
 }
 
 export async function deleteOrderIntent(id: string) {
+  if (useLocalStoreOnly()) {
+    const local = readLocal<OrderIntent[]>(ORDERS_KEY, defaultOrders);
+    const next = local.filter((order) => order.id !== id);
+    writeLocal(ORDERS_KEY, next);
+    return next;
+  }
+
   try {
     await fetchJson<{ ok: boolean }>(`/api/admin/orders/${encodeURIComponent(id)}`, {
       method: "DELETE"
