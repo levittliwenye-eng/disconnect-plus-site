@@ -97,7 +97,7 @@ export const defaultContent: CmsContent = {
       pinned: false
     },
     {
-      id: "field-electric-noise",
+      id: "wilderness-noise",
       date: "2026-09-20",
       category: { en: "Wilderness Noise", zh: "荒野噪音" },
       title: {
@@ -204,7 +204,7 @@ export const defaultContent: CmsContent = {
       }
     },
     {
-      id: "field-electric-noise",
+      id: "wilderness-noise",
       title: { en: "Wilderness Noise", zh: "荒野噪音" },
       type: { en: "Outdoor activity", zh: "户外活动" },
       imageUrl: "/images/crow_beach.JPG",
@@ -256,7 +256,7 @@ export const defaultContent: CmsContent = {
       status: "upcoming"
     },
     {
-      id: "field-noise-outdoor",
+      id: "wilderness-noise-outdoor",
       date: "2026-09-20",
       city: { en: "Outdoor / advance signup", zh: "户外 / 提前报名" },
       venue: { en: "Wilderness Noise site / irregular", zh: "荒野噪音现场 / 不定期" },
@@ -307,7 +307,7 @@ export const defaultContent: CmsContent = {
       active: true
     },
     {
-      id: "field-electric-noise-signup",
+      id: "wilderness-noise-signup",
       name: { en: "Wilderness Noise Signup", zh: "荒野噪音提前报名" },
       type: { en: "Irregular outdoor activity", zh: "不定期户外活动" },
       price: "Open",
