@@ -1,5 +1,5 @@
 import type { PagesContext } from "../_shared/cloudflare";
-import { createOrderIntentInD1, getDatabase } from "../_shared/data";
+import { createOrderIntentInD1, getDatabase, loadSiteContentFromD1 } from "../_shared/data";
 import { json, methodNotAllowed, missingDatabase, readJson } from "../_shared/http";
 import { verifyTurnstile } from "../_shared/turnstile";
 
@@ -19,7 +19,13 @@ export async function onRequestPost(context: PagesContext) {
     return missingDatabase();
   }
 
-  const input = await readJson<OrderInput>(context.request);
+  let input: OrderInput;
+  try {
+    input = await readJson<OrderInput>(context.request);
+  } catch {
+    return json({ error: "Expected JSON request." }, { status: 400 });
+  }
+
   const turnstile = await verifyTurnstile(
     context.request,
     context.env,
@@ -30,9 +36,19 @@ export async function onRequestPost(context: PagesContext) {
   }
 
   try {
+    const productId = input.productId || "";
+    const content = await loadSiteContentFromD1(db);
+    const product = content.products.find((item) => item.id === productId && item.active);
+    if (!product) {
+      return json({ error: "Selected item is not available." }, { status: 400 });
+    }
+    if (product.stock <= 0) {
+      return json({ error: "Selected item is sold out." }, { status: 400 });
+    }
+
     const order = await createOrderIntentInD1(db, {
-      productId: input.productId || "",
-      productName: input.productName || "",
+      productId: product.id,
+      productName: product.name.zh || product.name.en,
       quantity: input.quantity || 1,
       customerName: input.customerName || "",
       contact: input.contact || "",

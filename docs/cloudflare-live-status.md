@@ -26,6 +26,9 @@ Last checked: 2026-08-30
 - `/privacy/` returns 200 and documents order/contact information handling.
 - Security headers are present on `/`.
 - `/api/content` returns `Cache-Control: no-store`.
+- Public order submissions are verified against active products on the server.
+- `/.well-known/security.txt` provides the security contact and policy URL.
+- HSTS is enabled with `Strict-Transport-Security: max-age=31536000`.
 
 ## Still Needed Before Public Launch
 

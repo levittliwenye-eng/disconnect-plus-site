@@ -139,12 +139,16 @@ const checks = await Promise.all([
   httpCheck("sitemap", `${siteUrl}/sitemap.xml`, undefined, (status, body) => {
     return status === 200 && body.includes(`${siteUrl}/</loc>`) && body.includes(`${siteUrl}/privacy/</loc>`);
   }),
+  httpCheck("security.txt", `${siteUrl}/.well-known/security.txt`, undefined, (status, body) => {
+    return status === 200 && body.includes("Contact: mailto:disconnectaudio@sina.com") && body.includes("Policy:");
+  }),
   httpCheck("security headers", `${siteUrl}/`, undefined, (status, _body, response) => {
     return (
       status === 200 &&
       hasHeader(response, "content-security-policy", "default-src 'self'") &&
       hasHeader(response, "content-security-policy", "frame-ancestors 'none'") &&
       hasHeader(response, "referrer-policy", "strict-origin-when-cross-origin") &&
+      hasHeader(response, "strict-transport-security", "max-age=31536000") &&
       hasHeader(response, "x-content-type-options", "nosniff") &&
       hasHeader(response, "x-frame-options", "DENY") &&
       hasHeader(response, "permissions-policy", "camera=()")
