@@ -6,7 +6,7 @@ Last checked: 2026-08-30
 
 - Pages project: `disconnect-plus-site`
 - Production URL: `https://disconnect-plus-site.pages.dev`
-- Latest protected deployment: `https://e33347ee.disconnect-plus-site.pages.dev`
+- Latest protected deployment: `https://649859db.disconnect-plus-site.pages.dev`
 - D1 database name: `disconnect_site`
 - D1 binding name used by the app: `DB`
 - D1 region observed from queries: APAC / SIN
@@ -21,6 +21,7 @@ Last checked: 2026-08-30
 - `/admin` returns 401 without Cloudflare Access.
 - `/api/admin/session` returns 401 without Cloudflare Access.
 - Mobile layout has no horizontal overflow at 360px and 390px.
+- Turnstile uses explicit client-side rendering to avoid React hydration mismatch.
 
 ## Still Needed Before Public Launch
 
