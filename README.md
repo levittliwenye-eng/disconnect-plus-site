@@ -41,7 +41,7 @@ Use Cloudflare for the whole production stack:
 5. Create a Cloudflare D1 database, for example `disconnect_site`.
 6. Run `cloudflare/d1/schema.sql` against that D1 database.
 7. Add a Pages D1 binding named `DB`.
-8. If using Wrangler config, copy `wrangler.example.toml` to `wrangler.toml` and replace the D1 `database_id`.
+8. If using Wrangler config, copy `wrangler.example.jsonc` to `wrangler.jsonc` and replace the D1 `database_id`.
 9. Create a Cloudflare Turnstile widget for the domain.
 10. Add these Pages environment variables:
 

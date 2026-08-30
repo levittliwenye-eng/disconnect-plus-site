@@ -22,7 +22,7 @@
 - Create a D1 database, for example `disconnect_site`.
 - Run `cloudflare/d1/schema.sql` against the database.
 - Add a Pages D1 binding named `DB`.
-- If using Wrangler config, copy `wrangler.example.toml` to `wrangler.toml` and replace `database_id` with the real D1 database ID.
+- If using Wrangler config, copy `wrangler.example.jsonc` to `wrangler.jsonc` and replace `database_id` with the real D1 database ID.
 - If using the Cloudflare dashboard, keep the same binding name: `DB`.
 
 ## Environment Variables

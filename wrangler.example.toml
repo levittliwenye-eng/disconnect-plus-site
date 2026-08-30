@@ -1,8 +1,0 @@
-name = "disconnect-plus-site"
-compatibility_date = "2026-08-30"
-pages_build_output_dir = "out"
-
-[[d1_databases]]
-binding = "DB"
-database_name = "disconnect_site"
-database_id = "replace-with-cloudflare-d1-database-id"

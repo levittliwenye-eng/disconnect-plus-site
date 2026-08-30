@@ -37,6 +37,8 @@ Database: disconnect_site
 
 `DB` 这个名字必须保持一致，网站后台和订单接口会读取这个绑定。
 
+如果以后用 Wrangler 命令行管理配置，可以把 `wrangler.example.jsonc` 复制成 `wrangler.jsonc`，再填入真实 D1 `database_id`。`wrangler.jsonc` 已被 `.gitignore` 忽略，避免误提交账号资源 ID。
+
 ## 3. 设置环境变量
 
 在 Cloudflare Pages 的 Production 环境变量里填写：
@@ -102,4 +104,3 @@ ADMIN_EMAILS=disconnectaudio@sina.com
 - 管理员登录后可以修改内容。
 - 浏览器地址栏显示 HTTPS。
 - Cloudflare Pages 自定义域名状态为 Active。
-
