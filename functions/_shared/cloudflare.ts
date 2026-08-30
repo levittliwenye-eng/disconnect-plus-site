@@ -32,4 +32,5 @@ export type PagesContext<Params = Record<string, string | string[]>> = {
   request: Request;
   env: Env;
   params: Params;
+  next: () => Promise<Response>;
 };

@@ -82,6 +82,8 @@ ADMIN_EMAILS=disconnectaudio@sina.com
 
 `/api/orders` 是预约/购买提交入口，要公开，但必须配合 Turnstile。
 
+代码里也有一层兜底保护：如果没有 Cloudflare Access JWT，`/admin*` 和 `/api/admin/*` 会直接返回 401。也就是说，Access 没配好之前后台不会公开展示，但管理员也暂时进不去。
+
 ## 6. 绑定域名
 
 域名在 Cloudflare 购买或迁入后，把它绑定到 Pages 项目。

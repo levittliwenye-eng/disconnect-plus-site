@@ -50,6 +50,7 @@ Do not commit real secrets, API tokens, Turnstile secret keys, Access secrets, o
 - Protect `/admin*`.
 - Protect `/api/admin/*`.
 - Allow only the admin email list in `ADMIN_EMAILS`.
+- The code also blocks `/admin*` and `/api/admin/*` without a valid Cloudflare Access JWT.
 - Public routes should remain open:
   - `/`
   - `/api/content`
