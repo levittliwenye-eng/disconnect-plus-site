@@ -65,6 +65,12 @@ ADMIN_EMAILS=admin@example.com
 `ADMIN_EMAILS` is a comma-separated allowlist. Admin API requests require a valid
 Cloudflare Access JWT and an email on that list.
 
+Run a non-secret production status check before launch:
+
+```bash
+npm run check:cloudflare
+```
+
 ## Data Model
 
 Production data lives in Cloudflare D1:
