@@ -7,7 +7,7 @@ Last checked: 2026-08-30
 - Pages project: `disconnect-plus-site`
 - Production URL: `https://disconnectplus.com`
 - Cloudflare Pages fallback URL: `https://disconnect-plus-site.pages.dev`
-- Latest protected deployment: `https://1e2b65fe.disconnect-plus-site.pages.dev`
+- Latest protected deployment: `https://72758370.disconnect-plus-site.pages.dev`
 - D1 database name: `disconnect_site`
 - D1 binding name used by the app: `DB`
 - D1 region observed from queries: APAC / SIN
@@ -30,9 +30,10 @@ Last checked: 2026-08-30
 - Public order submissions are verified against active products on the server.
 - `/.well-known/security.txt` provides the security contact and policy URL.
 - HSTS is enabled with `Strict-Transport-Security: max-age=31536000`.
+- `https://disconnectplus.com` is active with Pages domain validation and HTTPS verification complete.
+- Public DNS resolves `disconnectplus.com` to Cloudflare; the current local resolver may still need time to refresh.
 
 ## Still Needed Before Public Launch
 
-- Confirm the Pages custom domain and SSL certificate show `Active` after deployment.
 - Configure Cloudflare Access for `/admin*` and `/api/admin/*`.
 - Set `CF_ACCESS_TEAM_DOMAIN` and `CF_ACCESS_AUD` after the Access application is created.
