@@ -1129,6 +1129,16 @@ button:disabled {
   transform: scale(1.03);
 }
 
+.product-card img {
+  background: #050505;
+  filter: none;
+  object-fit: contain;
+}
+
+.product-card:hover img {
+  transform: none;
+}
+
 .show-row,
 .news-row {
   display: grid;
@@ -1605,6 +1615,15 @@ button:disabled {
 
   .section {
     padding: 68px 18px;
+  }
+
+  .music-layout .image-panel {
+    width: min(100%, 320px);
+    justify-self: center;
+  }
+
+  .music-layout .image-panel img {
+    aspect-ratio: 3 / 4;
   }
 
   .policy-page {
