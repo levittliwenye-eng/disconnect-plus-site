@@ -1,6 +1,14 @@
 import type { PagesContext } from "../_shared/cloudflare";
 import { createOrderIntentInD1, getDatabase, loadSiteContentFromD1 } from "../_shared/data";
-import { json, methodNotAllowed, missingDatabase, readJson } from "../_shared/http";
+import {
+  JSON_BODY_LIMITS,
+  JsonRequestError,
+  json,
+  jsonRequestError,
+  methodNotAllowed,
+  missingDatabase,
+  readJson
+} from "../_shared/http";
 import { verifyTurnstile } from "../_shared/turnstile";
 
 type OrderInput = {
@@ -13,6 +21,27 @@ type OrderInput = {
   turnstileToken?: string;
 };
 
+function optionalString(value: unknown) {
+  return typeof value === "string" ? value : undefined;
+}
+
+function parseOrderInput(value: unknown): OrderInput {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    throw new JsonRequestError("Invalid order request.", 400);
+  }
+
+  const input = value as Record<string, unknown>;
+  return {
+    productId: optionalString(input.productId),
+    productName: optionalString(input.productName),
+    quantity: typeof input.quantity === "number" ? input.quantity : undefined,
+    customerName: optionalString(input.customerName),
+    contact: optionalString(input.contact),
+    notes: optionalString(input.notes),
+    turnstileToken: optionalString(input.turnstileToken)
+  };
+}
+
 export async function onRequestPost(context: PagesContext) {
   const db = getDatabase(context.env);
   if (!db) {
@@ -21,9 +50,10 @@ export async function onRequestPost(context: PagesContext) {
 
   let input: OrderInput;
   try {
-    input = await readJson<OrderInput>(context.request);
-  } catch {
-    return json({ error: "Expected JSON request." }, { status: 400 });
+    const body = await readJson<unknown>(context.request, JSON_BODY_LIMITS.order);
+    input = parseOrderInput(body);
+  } catch (error) {
+    return jsonRequestError(error);
   }
 
   const turnstile = await verifyTurnstile(

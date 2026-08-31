@@ -5,7 +5,13 @@ import {
   loadSiteContentFromD1,
   saveSiteContentToD1
 } from "../../_shared/data";
-import { json, missingDatabase, readJson } from "../../_shared/http";
+import {
+  JSON_BODY_LIMITS,
+  json,
+  jsonRequestError,
+  missingDatabase,
+  readJson
+} from "../../_shared/http";
 import type { CmsContent } from "../../../lib/types";
 
 type ContentInput = {
@@ -33,8 +39,13 @@ export async function onRequestPost(context: PagesContext) {
     return missingDatabase();
   }
 
-  const input = await readJson<ContentInput>(context.request);
-  if (!input.content) {
+  let input: ContentInput;
+  try {
+    input = await readJson<ContentInput>(context.request, JSON_BODY_LIMITS.adminContent);
+  } catch (error) {
+    return jsonRequestError(error);
+  }
+  if (!input || typeof input !== "object" || Array.isArray(input) || !input.content) {
     return json({ error: "Content payload is required." }, { status: 400 });
   }
 

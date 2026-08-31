@@ -1,7 +1,13 @@
 import type { Env } from "./cloudflare";
+import { TURNSTILE_ORDER_ACTION } from "../../lib/security";
+
+const MAX_TURNSTILE_TOKEN_LENGTH = 2048;
+const TURNSTILE_TIMEOUT_MS = 10_000;
 
 type TurnstileResponse = {
   success: boolean;
+  action?: string;
+  hostname?: string;
   "error-codes"?: string[];
 };
 
@@ -30,6 +36,9 @@ export async function verifyTurnstile(
   if (!token) {
     return { ok: false, status: 400, error: "Turnstile token is required." };
   }
+  if (token.length > MAX_TURNSTILE_TOKEN_LENGTH) {
+    return { ok: false, status: 400, error: "Turnstile token is invalid." };
+  }
 
   const form = new FormData();
   form.append("secret", env.TURNSTILE_SECRET_KEY);
@@ -40,20 +49,37 @@ export async function verifyTurnstile(
     form.append("remoteip", remoteIp);
   }
 
-  const response = await fetch(
-    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-    {
-      method: "POST",
-      body: form
-    }
-  );
+  let response: Response;
+  try {
+    response = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        body: form,
+        signal: AbortSignal.timeout(TURNSTILE_TIMEOUT_MS)
+      }
+    );
+  } catch {
+    return { ok: false, status: 502, error: "Turnstile verification failed." };
+  }
 
   if (!response.ok) {
     return { ok: false, status: 502, error: "Turnstile verification failed." };
   }
 
-  const result = (await response.json()) as TurnstileResponse;
-  if (!result.success) {
+  let result: TurnstileResponse;
+  try {
+    result = (await response.json()) as TurnstileResponse;
+  } catch {
+    return { ok: false, status: 502, error: "Turnstile verification failed." };
+  }
+
+  const expectedHostname = new URL(request.url).hostname.toLowerCase();
+  if (
+    !result.success ||
+    result.hostname?.toLowerCase() !== expectedHostname ||
+    result.action !== TURNSTILE_ORDER_ACTION
+  ) {
     return { ok: false, status: 403, error: "Turnstile verification failed." };
   }
 

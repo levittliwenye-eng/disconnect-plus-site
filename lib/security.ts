@@ -7,6 +7,8 @@ export const FIELD_LIMITS = {
   quantityMax: 20
 };
 
+export const TURNSTILE_ORDER_ACTION = "order";
+
 const CONTROL_CHARS = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g;
 
 export function cleanText(value: string, maxLength: number) {

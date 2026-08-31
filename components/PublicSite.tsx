@@ -29,7 +29,8 @@ import {
   isExternalHref,
   normalizeQuantity,
   safeHref,
-  safeMediaSrc
+  safeMediaSrc,
+  TURNSTILE_ORDER_ACTION
 } from "@/lib/security";
 import { defaultContent } from "@/lib/seed";
 import type { CmsContent, LocaleText, Product, Song } from "@/lib/types";
@@ -43,6 +44,7 @@ declare global {
         container: HTMLElement | string,
         options: {
           sitekey: string;
+          action?: string;
           theme?: "dark" | "light" | "auto";
           callback?: (token: string) => void;
           "expired-callback"?: () => void;
@@ -294,6 +296,7 @@ function TurnstileField({
 
       widgetIdRef.current = turnstile.render(containerRef.current, {
         sitekey: turnstileSiteKey,
+        action: TURNSTILE_ORDER_ACTION,
         theme: "dark",
         callback: onTokenChange,
         "expired-callback": () => onTokenChange(""),

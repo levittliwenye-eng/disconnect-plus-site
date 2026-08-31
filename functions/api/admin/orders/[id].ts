@@ -5,7 +5,14 @@ import {
   getDatabase,
   updateOrderIntentInD1
 } from "../../../_shared/data";
-import { json, missingDatabase, readJson } from "../../../_shared/http";
+import {
+  JSON_BODY_LIMITS,
+  JsonRequestError,
+  json,
+  jsonRequestError,
+  missingDatabase,
+  readJson
+} from "../../../_shared/http";
 import type { OrderIntent } from "../../../../lib/types";
 
 type RouteParams = {
@@ -24,10 +31,16 @@ export async function onRequestPatch(context: PagesContext<RouteParams>) {
   }
 
   try {
-    const patch = await readJson<Partial<OrderIntent>>(context.request);
+    const patch = await readJson<Partial<OrderIntent>>(
+      context.request,
+      JSON_BODY_LIMITS.adminMutation
+    );
     const order = await updateOrderIntentInD1(db, context.params.id, patch);
     return json({ order });
   } catch (error) {
+    if (error instanceof JsonRequestError) {
+      return jsonRequestError(error);
+    }
     return json(
       { error: error instanceof Error ? error.message : "Order update failed." },
       { status: 400 }
