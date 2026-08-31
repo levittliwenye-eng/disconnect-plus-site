@@ -1,6 +1,6 @@
 # DISCONNECT+ Cloudflare Live Status
 
-Last checked: 2026-08-30
+Last checked: 2026-08-31
 
 ## Live Resources
 
@@ -38,8 +38,15 @@ Last checked: 2026-08-30
 - HSTS is enabled with `Strict-Transport-Security: max-age=31536000`.
 - `https://disconnectplus.com` is active with Pages domain validation and HTTPS verification complete.
 - Public DNS resolves `disconnectplus.com` to Cloudflare; the current local resolver may still need time to refresh.
+- Minimum edge TLS is `1.2`, TLS 1.3 remains enabled, and SSL/TLS mode is `Full (strict)`.
+- `Always Use HTTPS` is enabled and live HTTP navigation redirects to HTTPS.
+- A Cloudflare rate-limiting rule blocks bursts above five `POST /api/orders` requests per IP and data center in ten seconds.
+- Public order JSON is capped at 16 KiB before full buffering; admin mutations use separate bounded limits.
+- Turnstile verification checks token length, the request hostname, and the `order` action, and fails closed on timeout or malformed responses.
+- CSP blocks inline script attributes and upgrades insecure resource requests. Next.js bootstrap scripts still require the existing inline-script allowance.
+- DNSSEC signing is enabled with algorithm 13 / SHA-256; Cloudflare Registrar DS publication is pending and may take one to two days.
 
 ## Still Needed Before Public Launch
 
 - Open `https://disconnectplus.com/admin`, finish the email one-time-code login, and confirm the admin dashboard loads in your browser.
-- Local DNS on this machine may still need time to refresh even though public DNS already resolves `disconnectplus.com`.
+- Confirm DNSSEC changes from `pending` to `active` after Cloudflare Registrar publishes the DS record.

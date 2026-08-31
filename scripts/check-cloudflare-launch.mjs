@@ -146,7 +146,9 @@ const checks = await Promise.all([
     return (
       status === 200 &&
       hasHeader(response, "content-security-policy", "default-src 'self'") &&
+      hasHeader(response, "content-security-policy", "script-src-attr 'none'") &&
       hasHeader(response, "content-security-policy", "frame-ancestors 'none'") &&
+      hasHeader(response, "content-security-policy", "upgrade-insecure-requests") &&
       hasHeader(response, "referrer-policy", "strict-origin-when-cross-origin") &&
       hasHeader(response, "strict-transport-security", "max-age=31536000") &&
       hasHeader(response, "x-content-type-options", "nosniff") &&
