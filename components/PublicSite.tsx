@@ -33,7 +33,7 @@ import {
   TURNSTILE_ORDER_ACTION
 } from "@/lib/security";
 import { defaultContent } from "@/lib/seed";
-import type { CmsContent, LocaleText, Product, Song } from "@/lib/types";
+import type { CmsContent, LinkItem, LocaleText, Product, Song } from "@/lib/types";
 
 type Lang = "zh" | "en";
 
@@ -106,6 +106,8 @@ const ui = {
     ],
     musicLead: "",
     visualLead: "",
+    visualAll: "全部",
+    visualFilters: "视觉分类",
     showsLead: "Noise Box 固定在周五或周六 21:00-22:30 进行电子音乐即兴；荒野噪音不定期举行，需要提前报名。",
     storeLead: "商店/预约已经开放：实体周边、音频插件咨询、Noise Box 活动名额和荒野噪音报名都可以在这里管理。",
     membersLead: "给媒体、演出方和合作项目使用的乐队介绍与成员档案。",
@@ -121,11 +123,18 @@ const ui = {
     orderTitle: "预留 / 购买意向",
     privacyNotice: "提交的信息只用于联系和订单处理；联系方式和订单内容不会公开显示。",
     chooseProduct: "选择物品",
+    pluginAction: "获取插件",
+    signupAction: "报名",
+    reserveAction: "预约",
+    showSignup: "报名",
     name: "姓名 / 代号",
     contact: "联系方式",
     quantity: "数量",
     notes: "备注",
     submitOrder: "提交意向",
+    submitPlugin: "提交获取意向",
+    submitSignup: "提交报名",
+    submitReserve: "提交预约",
     orderSent: "订单意向已记录，我们会通过你留下的方式联系。",
     soldOut: "售罄",
     stock: "库存",
@@ -181,6 +190,8 @@ const ui = {
     ],
     musicLead: "",
     visualLead: "",
+    visualAll: "All",
+    visualFilters: "Visual filters",
     showsLead: "Noise Box runs electronic improvisation on Fridays or Saturdays from 21:00 to 22:30. Wilderness Noise happens irregularly with advance signup.",
     storeLead: "Reservations are open for physical merch, audio plugin inquiries, Noise Box sessions, and Wilderness Noise signup.",
     membersLead: "Band introduction and member files for press, booking, and collaboration.",
@@ -197,11 +208,18 @@ const ui = {
     privacyNotice:
       "Submitted details are used only for contact and order handling. Contact and order details are not shown publicly.",
     chooseProduct: "Choose artifact",
+    pluginAction: "Get plugin",
+    signupAction: "Sign up",
+    reserveAction: "Reserve",
+    showSignup: "Sign up",
     name: "Name / codename",
     contact: "Contact",
     quantity: "Quantity",
     notes: "Notes",
     submitOrder: "Submit intent",
+    submitPlugin: "Submit request",
+    submitSignup: "Submit signup",
+    submitReserve: "Submit reservation",
     orderSent: "Order intent captured. The band will contact you.",
     soldOut: "Sold out",
     stock: "Stock",
@@ -346,6 +364,67 @@ function productStatus(product: Product, lang: Lang) {
   return product.stock > 0 ? `${ui[lang].stock}: ${product.stock}` : ui[lang].soldOut;
 }
 
+function realLinks(links: LinkItem[]) {
+  return links.filter((link) => safeHref(link.url) !== "#");
+}
+
+function productKind(product: Product) {
+  const haystack = [
+    product.id,
+    product.name.en,
+    product.name.zh,
+    product.type.en,
+    product.type.zh
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  if (
+    haystack.includes("plugin") ||
+    haystack.includes("vst") ||
+    haystack.includes("max for live") ||
+    haystack.includes("插件")
+  ) {
+    return "plugin";
+  }
+
+  if (
+    haystack.includes("signup") ||
+    haystack.includes("ticket") ||
+    haystack.includes("session") ||
+    haystack.includes("报名")
+  ) {
+    return "signup";
+  }
+
+  return "reserve";
+}
+
+function productActionLabel(product: Product, lang: Lang) {
+  const kind = productKind(product);
+  if (kind === "plugin") {
+    return ui[lang].pluginAction;
+  }
+  if (kind === "signup") {
+    return ui[lang].signupAction;
+  }
+  return ui[lang].reserveAction;
+}
+
+function submitActionLabel(product: Product | undefined, lang: Lang) {
+  if (!product) {
+    return ui[lang].submitOrder;
+  }
+  const kind = productKind(product);
+  if (kind === "plugin") {
+    return ui[lang].submitPlugin;
+  }
+  if (kind === "signup") {
+    return ui[lang].submitSignup;
+  }
+  return ui[lang].submitReserve;
+}
+
 export function PublicSite() {
   const [lang, setLang] = useState<Lang>("zh");
   const [content, setContent] = useState<CmsContent>(defaultContent);
@@ -355,6 +434,7 @@ export function PublicSite() {
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileResetKey, setTurnstileResetKey] = useState(0);
   const [selectedProductId, setSelectedProductId] = useState(content.products[0]?.id ?? "");
+  const [activeVisualType, setActiveVisualType] = useState("all");
   const [orderForm, setOrderForm] = useState({
     customerName: "",
     contact: "",
@@ -370,6 +450,19 @@ export function PublicSite() {
   const activeProducts = content.products.filter((product) => product.active);
   const selectedProduct =
     activeProducts.find((product) => product.id === selectedProductId) ?? activeProducts[0];
+  const visualTypes = useMemo(() => {
+    const types = new Map<string, string>();
+    for (const visual of content.visuals) {
+      types.set(visual.type.en, text(visual.type, lang));
+    }
+    return Array.from(types, ([id, label]) => ({ id, label }));
+  }, [content.visuals, lang]);
+  const visibleVisuals = useMemo(() => {
+    if (activeVisualType === "all") {
+      return content.visuals;
+    }
+    return content.visuals.filter((visual) => visual.type.en === activeVisualType);
+  }, [activeVisualType, content.visuals]);
   const handleTurnstileToken = useCallback((token: string) => {
     setTurnstileToken(token);
   }, []);
@@ -394,6 +487,15 @@ export function PublicSite() {
     audio.src = safeMediaSrc(activeSong.audioUrl);
     audio.play().catch(() => setIsPlaying(false));
   }, [activeSong, isPlaying]);
+
+  useEffect(() => {
+    if (activeVisualType === "all") {
+      return;
+    }
+    if (!content.visuals.some((visual) => visual.type.en === activeVisualType)) {
+      setActiveVisualType("all");
+    }
+  }, [activeVisualType, content.visuals]);
 
   function toggleSong(song: Song) {
     if (song.id === activeSongId) {
@@ -671,36 +773,42 @@ export function PublicSite() {
           </div>
           <div className="music-layout">
             <div className="track-list">
-              {content.songs.map((song) => (
-                <article
-                  className={`track-row ${song.id === activeSongId ? "is-active" : ""}`}
-                  key={song.id}
-                >
-                  <button
-                    className="icon-button"
-                    onClick={() => toggleSong(song)}
-                    aria-label={song.id === activeSongId && isPlaying ? "Pause" : "Play"}
+              {content.songs.map((song) => {
+                const songLinks = realLinks(song.links);
+
+                return (
+                  <article
+                    className={`track-row ${song.id === activeSongId ? "is-active" : ""}`}
+                    key={song.id}
                   >
-                    {song.id === activeSongId && isPlaying ? <Pause size={17} /> : <Play size={17} />}
-                  </button>
-                  <div>
-                    <div className="track-title">{text(song.title, lang)}</div>
-                    <div className="track-meta">
-                      {song.release} / {song.duration}
+                    <button
+                      className="icon-button"
+                      onClick={() => toggleSong(song)}
+                      aria-label={song.id === activeSongId && isPlaying ? "Pause" : "Play"}
+                    >
+                      {song.id === activeSongId && isPlaying ? <Pause size={17} /> : <Play size={17} />}
+                    </button>
+                    <div>
+                      <div className="track-title">{text(song.title, lang)}</div>
+                      <div className="track-meta">
+                        {song.release} / {song.duration}
+                      </div>
+                      {song.lyrics && <p>{text(song.lyrics, lang)}</p>}
+                      {songLinks.length > 0 && (
+                        <div className="link-row">
+                          {songLinks.map((link) => (
+                            <SafeLink className="micro-link" href={link.url} key={link.label}>
+                              {link.label}
+                              <ExternalLink size={12} />
+                            </SafeLink>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                    {song.lyrics && <p>{text(song.lyrics, lang)}</p>}
-                    <div className="link-row">
-                      {song.links.map((link) => (
-                        <SafeLink className="micro-link" href={link.url} key={link.label}>
-                          {link.label}
-                          <ExternalLink size={12} />
-                        </SafeLink>
-                      ))}
-                    </div>
-                  </div>
-                  <span className="badge">{song.featured ? "featured" : "archive"}</span>
-                </article>
-              ))}
+                    <span className="badge">{song.featured ? "featured" : "archive"}</span>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -715,8 +823,27 @@ export function PublicSite() {
             </div>
             {ui[lang].visualLead && <p>{ui[lang].visualLead}</p>}
           </div>
+          <div className="filter-row" aria-label={ui[lang].visualFilters}>
+            <button
+              className={`filter-chip ${activeVisualType === "all" ? "is-active" : ""}`}
+              onClick={() => setActiveVisualType("all")}
+              type="button"
+            >
+              {ui[lang].visualAll}
+            </button>
+            {visualTypes.map((visualType) => (
+              <button
+                className={`filter-chip ${activeVisualType === visualType.id ? "is-active" : ""}`}
+                key={visualType.id}
+                onClick={() => setActiveVisualType(visualType.id)}
+                type="button"
+              >
+                {visualType.label}
+              </button>
+            ))}
+          </div>
           <div className="grid four">
-            {content.visuals.map((visual) => (
+            {visibleVisuals.map((visual) => (
               <article className="content-card visual-card" key={visual.id}>
                 <img
                   src={safeMediaSrc(visual.imageUrl) || "/images/skeleton_beach.jpg"}
@@ -762,7 +889,7 @@ export function PublicSite() {
                 {show.ticketUrl && (
                   <SafeLink className="text-button" href={show.ticketUrl}>
                     <Ticket size={16} />
-                    Tickets
+                    {ui[lang].showSignup}
                   </SafeLink>
                 )}
               </article>
@@ -925,7 +1052,7 @@ export function PublicSite() {
                 />
                 <button className="text-button" type="submit">
                   <ShoppingBag size={17} />
-                  {ui[lang].submitOrder}
+                  {submitActionLabel(selectedProduct, lang)}
                 </button>
                 <p className="status-line">
                   {ui[lang].privacyNotice}{" "}
@@ -957,7 +1084,7 @@ export function PublicSite() {
                         disabled={product.stock <= 0}
                       >
                         <ShoppingBag size={16} />
-                        {ui[lang].chooseProduct}
+                        {productActionLabel(product, lang)}
                       </button>
                       {product.externalUrl && (
                         <SafeLink className="ghost-button" href={product.externalUrl}>

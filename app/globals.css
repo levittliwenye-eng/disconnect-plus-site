@@ -171,6 +171,8 @@ button:disabled {
   background: rgba(255, 255, 255, 0.04);
   color: var(--text);
   padding: 0 14px;
+  min-width: 0;
+  text-align: center;
   text-transform: uppercase;
   transition: border-color 160ms ease, background 160ms ease, color 160ms ease, transform 160ms ease;
 }
@@ -1000,6 +1002,35 @@ button:disabled {
   margin-top: 10px;
 }
 
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -10px 0 24px;
+}
+
+.filter-chip {
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.28);
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0 12px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.filter-chip:hover,
+.filter-chip.is-active {
+  border-color: var(--text);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
 .micro-link {
   display: inline-flex;
   align-items: center;
@@ -1484,11 +1515,17 @@ button:disabled {
 
 @media (max-width: 980px) {
   .nav {
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
     grid-template-columns: 1fr auto;
     min-height: 76px;
     padding: 16px 22px;
+  }
+
+  .brand-mark {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .nav .icon-button {
@@ -1583,12 +1620,16 @@ button:disabled {
 
   .hero-entry-actions,
   .hero-secondary-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
   }
 
   .hero-entry-actions .text-button,
-  .hero-entry-actions .ghost-button {
-    flex: 1 1 180px;
+  .hero-entry-actions .ghost-button,
+  .hero-secondary-actions .text-button,
+  .hero-secondary-actions .ghost-button {
+    width: 100%;
   }
 
   .hero-stat {
@@ -1626,6 +1667,10 @@ button:disabled {
   .news-row {
     grid-template-columns: 1fr;
   }
+
+  .filter-row {
+    margin-top: -4px;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1636,19 +1681,20 @@ button:disabled {
 
 @media (max-width: 430px) {
   .brand-mark {
+    max-width: calc(100vw - 114px);
+    padding-right: 0;
     font-size: 0.84rem;
     letter-spacing: 0.06em;
-    padding-right: 92px;
   }
 
   .nav {
+    grid-template-columns: minmax(0, 1fr) auto;
     padding-inline: 16px;
   }
 
   .nav-actions {
-    position: absolute;
-    top: 14px;
-    right: 16px;
+    position: static;
+    justify-self: end;
     gap: 8px;
   }
 
@@ -1661,6 +1707,22 @@ button:disabled {
     font-size: 1.95rem;
   }
 
+  .hero-entry-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-secondary-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-entry-actions .text-button,
+  .hero-entry-actions .ghost-button,
+  .hero-secondary-actions .text-button,
+  .hero-secondary-actions .ghost-button {
+    padding-inline: 10px;
+    font-size: 0.82rem;
+  }
+
   .hero-copy {
     font-size: 0.92rem;
   }
@@ -1668,17 +1730,18 @@ button:disabled {
 
 @media (max-width: 360px) {
   .brand-mark {
+    max-width: calc(100vw - 106px);
+    padding-right: 0;
     font-size: 0.76rem;
     letter-spacing: 0.04em;
-    padding-right: 84px;
   }
 
   .nav {
+    grid-template-columns: minmax(0, 1fr) auto;
     padding-inline: 14px;
   }
 
   .nav-actions {
-    right: 14px;
     gap: 8px;
   }
 
