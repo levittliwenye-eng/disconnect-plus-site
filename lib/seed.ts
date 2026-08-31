@@ -7,6 +7,14 @@ export const imageOptions = [
   "/images/synth.jpg",
   "/images/the-bureaucrat-plugin.png",
   "/images/pigen2-plugin.png",
+  "/images/visuals/ocular-broadcast.jpg",
+  "/images/visuals/skeleton-studio.jpg",
+  "/images/visuals/octopus-console.jpg",
+  "/images/visuals/black-duo-console.jpg",
+  "/images/visuals/masked-mixers.jpg",
+  "/images/visuals/red-skeleton-console.jpg",
+  "/images/visuals/red-crow-poster.jpg",
+  "/images/visuals/door-skeleton-poster.jpg",
   "/images/my_record.jpg",
   "/images/hc.jpg",
   "/images/qz.jpg",
@@ -214,6 +222,86 @@ export const defaultContent: CmsContent = {
         en: "Irregular outdoor activity by advance signup, with weather, ground, power, and distance entering the sound.",
         zh: "不定期、提前报名的户外活动，让天气、地面、电源和距离进入声音。"
       }
+    },
+    {
+      id: "ocular-broadcast",
+      title: { en: "Ocular Broadcast", zh: "目镜广播" },
+      type: { en: "Artwork", zh: "画作" },
+      imageUrl: "/images/visuals/ocular-broadcast.jpg",
+      description: {
+        en: "A bright receiver image for the softer side of the signal archive.",
+        zh: "偏柔和的信号接收图像，适合放在视觉档案里作为彩色入口。"
+      }
+    },
+    {
+      id: "skeleton-studio",
+      title: { en: "Skeleton Studio", zh: "骸骨工作室" },
+      type: { en: "Noise Box image", zh: "Noise Box 图像" },
+      imageUrl: "/images/visuals/skeleton-studio.jpg",
+      description: {
+        en: "A seated figure, machines, and a small room that reads close to the Noise Box world.",
+        zh: "骸骨、机器和小房间，和 Noise Box 的现场气质更接近。"
+      }
+    },
+    {
+      id: "octopus-console",
+      title: { en: "Octopus Console", zh: "章鱼控制台" },
+      type: { en: "Artwork", zh: "画作" },
+      imageUrl: "/images/visuals/octopus-console.jpg",
+      description: {
+        en: "Surreal hands on a console, useful for the stranger electronic side of the archive.",
+        zh: "触手在控制台上操作，适合对应更怪诞的电子声音部分。"
+      }
+    },
+    {
+      id: "black-duo-console",
+      title: { en: "Black Duo Console", zh: "黑色双人控制台" },
+      type: { en: "Artwork", zh: "画作" },
+      imageUrl: "/images/visuals/black-duo-console.jpg",
+      description: {
+        en: "A darker performance image for improvisation, routing, and shared machinery.",
+        zh: "更冷、更暗的合奏图像，对应即兴、接线和共同操作机器。"
+      }
+    },
+    {
+      id: "masked-mixers",
+      title: { en: "Masked Mixers", zh: "面具混音者" },
+      type: { en: "Collective image", zh: "集体图像" },
+      imageUrl: "/images/visuals/masked-mixers.jpg",
+      description: {
+        en: "A visual cue for rotating players and temporary live formations.",
+        zh: "适合表示不断变化的乐手阵容和临时现场组合。"
+      }
+    },
+    {
+      id: "red-skeleton-console",
+      title: { en: "Red Skeleton Console", zh: "红色骸骨控制台" },
+      type: { en: "Poster fragment", zh: "海报碎片" },
+      imageUrl: "/images/visuals/red-skeleton-console.jpg",
+      description: {
+        en: "A high-contrast red image for sharper live or release announcements.",
+        zh: "强烈的红色图像，可以放进演出、发布和活动视觉系统。"
+      }
+    },
+    {
+      id: "red-crow-poster",
+      title: { en: "Red Crow Poster", zh: "红色鸟骨海报" },
+      type: { en: "Poster", zh: "海报" },
+      imageUrl: "/images/visuals/red-crow-poster.jpg",
+      description: {
+        en: "A DISCONNECT poster mark that keeps the logo direct and rough.",
+        zh: "DISCONNECT 的海报标识，直接、粗粝，适合作为标志类档案。"
+      }
+    },
+    {
+      id: "door-skeleton-poster",
+      title: { en: "Door Skeleton Poster", zh: "门缝骸骨海报" },
+      type: { en: "Poster", zh: "海报" },
+      imageUrl: "/images/visuals/door-skeleton-poster.jpg",
+      description: {
+        en: "A spare poster symbol for the project identity and archive spine.",
+        zh: "更简洁的项目识别海报，可以作为后续视觉系统的基础。"
+      }
     }
   ],
   members: [
@@ -354,7 +442,7 @@ export const defaultContent: CmsContent = {
       type: { en: "Print", zh: "海报 / 画作" },
       price: "Reserve",
       availability: { en: "Reservation open", zh: "预约开放" },
-      imageUrl: "/images/qz.jpg",
+      imageUrl: "/images/visuals/red-crow-poster.jpg",
       stock: 12,
       active: true
     }

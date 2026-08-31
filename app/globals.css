@@ -757,9 +757,9 @@ button:disabled {
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.84), rgba(0, 0, 0, 0.48) 48%, rgba(0, 0, 0, 0.88)),
     radial-gradient(circle at 72% 18%, rgb(var(--section-accent) / 0.18), transparent 32%),
-    url("/images/alien_ufo.JPG") right 7% top 12% / min(480px, 34vw) auto no-repeat,
-    url("/images/moth_woman.JPG") left 8% bottom 10% / min(260px, 24vw) auto no-repeat;
-  filter: grayscale(1) contrast(1.18);
+    url("/images/visuals/black-duo-console.jpg") right 7% top 12% / min(500px, 34vw) auto no-repeat,
+    url("/images/visuals/red-crow-poster.jpg") left 8% bottom 10% / min(280px, 24vw) auto no-repeat;
+  filter: contrast(1.14) brightness(0.72);
   opacity: 0.5;
   mix-blend-mode: screen;
 }
@@ -1117,22 +1117,29 @@ button:disabled {
 .member-card img {
   width: 100%;
   aspect-ratio: 1 / 1;
-  filter: grayscale(1);
   object-fit: cover;
   transition: filter 180ms ease, transform 320ms ease;
 }
 
-.visual-card:hover img,
-.product-card:hover img,
-.member-card:hover img {
-  filter: grayscale(0);
-  transform: scale(1.03);
-}
-
+.visual-card img,
 .product-card img {
   background: #050505;
   filter: none;
   object-fit: contain;
+}
+
+.member-card img {
+  filter: grayscale(1);
+}
+
+.visual-card:hover img,
+.product-card:hover img {
+  transform: scale(1.03);
+}
+
+.member-card:hover img {
+  filter: grayscale(0);
+  transform: scale(1.03);
 }
 
 .product-card:hover img {
