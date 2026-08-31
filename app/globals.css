@@ -957,24 +957,9 @@ button:disabled {
 
 .music-layout {
   display: grid;
-  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
-  gap: 56px;
-  align-items: center;
-}
-
-.image-panel {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: #070707;
-  box-shadow: var(--shadow);
-}
-
-.image-panel img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  filter: grayscale(1);
-  object-fit: cover;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  align-items: stretch;
 }
 
 .track-list {
@@ -1622,15 +1607,6 @@ button:disabled {
 
   .section {
     padding: 68px 18px;
-  }
-
-  .music-layout .image-panel {
-    width: min(100%, 320px);
-    justify-self: center;
-  }
-
-  .music-layout .image-panel img {
-    aspect-ratio: 3 / 4;
   }
 
   .policy-page {

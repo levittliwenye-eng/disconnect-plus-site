@@ -670,9 +670,6 @@ export function PublicSite() {
             {ui[lang].musicLead && <p>{ui[lang].musicLead}</p>}
           </div>
           <div className="music-layout">
-            <div className="image-panel">
-              <img src="/images/skeleton_lightning.jpg" alt="" />
-            </div>
             <div className="track-list">
               {content.songs.map((song) => (
                 <article
